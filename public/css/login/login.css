@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to bottom, #00A651, #7D9393);
+    overflow: hidden; 
+}
+
+header {
+    text-align: right; 
+    padding: 20px;
+}
+
+header img {
+    max-width: 200px;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.about-login {
+    text-align: center;
+    padding: 20px;
+    margin-right: 100px;
+}
+
+.about-login img {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#planilha {
+    width: 144px; 
+    height: 155px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+}
+
+#texto {
+    width: 572px; 
+    height: 163px; 
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login {
+    background-color: transparent; 
+    border: none; 
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    margin-top: 20px; 
+    position: relative;
+}
+
+.login label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: left;
+    color: #355B3E;
+}
+
+.login input[type="email"],
+.login input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    position: relative;
+    color: #029664;
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+}
+
+.login input:focus,
+.login input:active {
+    outline: none; /* Remove a borda de foco padrão */
+    border: 1px solid #ccc; /* Define uma borda cinza para os campos */
+}
+
+.links_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.links_content label {
+    margin: 0;
+}
+
+.links_content a {
+    text-decoration: none;
+    color: #355B3E;
+    font-weight: bold;
+}
+
+.button-login {
+    margin-top: 15px;
+}
+
+.button-login input[type="submit"] {
+    background-color: #029664;
+    color: #B8D6BF;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.bi-eye-fill {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 5px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    color: #95B29B;
+    transform: translateY(-50%); 
+}
+
+.bi-eye-fill:hover {
+    color: #029664;
+}
+
