@@ -108,7 +108,7 @@ header img {
     margin: 15px auto 0; 
 }
 
-.login button[type="submit"] {
+.button-login button[type="submit"] {
     background-color: #029664;
     color: #B8D6BF;
     border: none;
@@ -120,7 +120,6 @@ header img {
     font-weight: bold;
     margin-top: 15px;
 }
-
 
 .bi-eye-fill {
     cursor: pointer;
