@@ -1,14 +1,15 @@
+/* Seu CSS existente */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     margin: 0;
     padding: 0;
     background-image: linear-gradient(to bottom, #00A651, #7D9393);
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 header {
-    text-align: right; 
+    text-align: right;
     padding: 20px;
 }
 
@@ -35,28 +36,28 @@ header img {
 }
 
 #planilha {
-    width: 110px; 
+    width: 110px;
     height: 110px;
     display: block;
     margin-left: auto;
-    margin-right: auto; 
+    margin-right: auto;
 }
 
 #texto {
-    width: 500px; 
-    height: 130px; 
+    width: 500px;
+    height: 130px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
 .login {
-    background-color: transparent; 
-    border: none; 
+    background-color: transparent;
+    border: none;
     padding: 10px;
     text-align: center;
     width: 300px;
-    margin-top: 20px; 
+    margin-top: 20px;
     position: relative;
 }
 
@@ -83,8 +84,8 @@ header img {
 
 .login input:focus,
 .login input:active {
-    outline: none; 
-    border: 1px solid #ccc; 
+    outline: none;
+    border: 1px solid #ccc;
 }
 
 .links_content {
@@ -105,7 +106,7 @@ header img {
 }
 
 .button-login {
-    margin: 15px auto 0; 
+    margin: 15px auto 0;
 }
 
 .button-login button[type="submit"] {
@@ -127,24 +128,44 @@ header img {
 }
 
 .button-login button i.bi-box-arrow-in-right {
-    font-size: 20px; 
-    color: #B8D6BF; 
-    font-weight: bold; 
+    font-size: 20px;
+    color: #B8D6BF;
+    font-weight: bold;
     vertical-align: middle;
 }
 
+/* Estilo para o ícone do olho (oculto) */
 .bi-eye-fill {
     cursor: pointer;
     font-size: 20px;
     margin-left: 5px;
     position: absolute;
-    right: 20px;
+    right: 5px;
     top: 50%;
     color: #95B29B;
-    transform: translateY(-80%); 
+    transform: translateY(-70%);
 }
 
-.bi-eye-fill:hover {
-    color: #029664;
+/* Estilo para o ícone do olho (visível) */
+.bi-eye-slash-fill {
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 5px;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    color: #95B29B;
+    transform: translateY(-50%);
 }
 
+/* Estilo para o botão do olho (ícone) */
+.eye-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 0;
+}

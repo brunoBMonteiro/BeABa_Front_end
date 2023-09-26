@@ -15,21 +15,24 @@
     <div class="main-container">
         <div class="about-login">
             <img id="planilha" src="/public/images/png/excel.png" alt="imagem planilha">
-            <img id="texto" src="/public/images/png/O melhor sistema de gerenciamento do mercado!.png" alt="Imagem texto bem vindo">
+            <img id="texto" src="/public/images/png/text.png" alt="Imagem texto bem vindo">
         </div>
 
         <div class="login">
             <label for="user_email">Email </label>
             <input type="email" id="user_email" placeholder="Email do usuário aqui!">
             <label for="user_password">Senha </label>
-            <input type="email" id="user_password" placeholder="Senha do usuário aqui!">
-            <i class="bi bi-eye-fill"></i>
-
+            <div style="position: relative;">
+                <input type="password" id="user_password" placeholder="Senha do usuário aqui!">
+                <button type="button" class="eye-button" id="password-toggle">
+                    <i class="bi bi-eye-fill"></i>
+                </button>
+            </div>
+              
             <div class="links_content">
                 <label>
                     <input type="checkbox" name="lembrar-me"> Lembrar-me
-                  </label>
-                  
+                </label>
                 <a href="esqueceu-senha.html">Esqueceu sua senha?</a>
             </div>
 
@@ -38,8 +41,8 @@
                     Login <i class="bi bi-box-arrow-in-right"></i>
                 </button>
             </div>
-
         </div>
     </div>
+    <script src="/public/js/login.js"></script>
 </body>
 </html>
