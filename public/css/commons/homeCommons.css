@@ -115,22 +115,22 @@ header img {
     margin-bottom: 10px;
     color: #757575;
     cursor: pointer;
+    position: relative; 
 }
 
-.menu-icon.current {
-    color: #757575;
-    position: relative;
-}
-
-.menu-icon.current::after {
-    content: "";
-    display: block;
-    width: 40%;
+.menu-icon.active .menu-indicator {
+    width: 50%; 
     height: 2px;
-    background-color: #757575;
+    background-color: #004ff8; /* Cor do traço */
     position: absolute;
-    bottom: 0;
-    left: 30%;
+    bottom: -3px;
+    left: 50%; 
+    transform: translateX(-50%); 
+}
+
+
+.menu-icon.active .menu-indicator {
+    background-color: #757575; 
 }
 
 .logout-button {
@@ -158,7 +158,6 @@ header img {
     background-color: #1e8c81;
 }
 
-/* Adicione essas classes ao seu CSS */
 .page {
     display: none;
 }

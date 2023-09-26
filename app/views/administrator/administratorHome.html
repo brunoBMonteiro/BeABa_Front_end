@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,16 @@
     <link rel="stylesheet" href="../../../public/css/commons/homeCommons.css">
     <title>Home do Administrador</title>
 </head>
+
 <body class="common-bg">
     <header>
         <img src="/public/images/png/logo 1.png" alt="logo quero quero">
     </header>
 
-    <div class="welcome-img">
-        <img class="centered-image" src="../../../public/images/png/bemvindo.png" alt="Imagem Bem vindo">
+    <div class="welcome-container">
+        <div class="welcome-img">
+            <img class="centered-image" src="../../../public/images/png/bemvindo.png" alt="Imagem Bem vindo">
+        </div>
     </div>
 
     <div class="sidebar">
@@ -26,30 +30,35 @@
         <div class="user-permission">Nível de Permissão</div>
         <div class="menu-title">Menu</div>
         <div class="menu-icons">
-            <div class="menu-icon current">
+            <div class="menu-icon current" onclick="showPage('home')" data-page="home">
                 <i class="bi bi-house-door"></i>
+                <div class="menu-indicator"></div>
             </div>
-            <div class="menu-icon">
+            <div class="menu-icon" onclick="showPage('planilha')" data-page="planilha">
                 <i class="bi bi-file-earmark-spreadsheet"></i>
+                <div class="menu-indicator"></div>
             </div>
-            <div class="menu-icon">
+            <div class="menu-icon" onclick="showPage('chart')" data-page="chart">
                 <i class="bi bi-bar-chart"></i>
+                <div class="menu-indicator"></div>
             </div>
-            <div class="menu-icon">
+            <div class="menu-icon" onclick="showPage('settings')" data-page="settings">
                 <i class="bi bi-gear"></i>
+                <div class="menu-indicator"></div>
             </div>
         </div>
-        
-        
 
         <div class="logout-button">
             <button type="button">
-                Logout 
+                Logout
                 <span class="icon">
                     <i class="bi bi-box-arrow-left"></i>
                 </span>
             </button>
-        </div>        
+        </div>
     </div>
+
+    <script src="../../../public/js/commons/commons.js"></script>
 </body>
+
 </html>
