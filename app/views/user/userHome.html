@@ -12,8 +12,10 @@
         <img src="/public/images/png/logo 1.png" alt="logo quero quero">
     </header>
 
-    <div class="welcome-img">
-        <img class="centered-image" src="../../../public/images/png/bemvindo.png" alt="Imagem Bem vindo">
+    <div class="welcome-container">
+        <div class="welcome-img">
+            <img class="centered-image" src="../../../public/images/png/bemvindo.png" alt="Imagem Bem vindo">
+        </div>
     </div>
 
     <div class="sidebar">
@@ -25,13 +27,17 @@
         <div class="user-name">Nome do Usuário</div>
         <div class="user-permission">Nível de Permissão</div>
         <div class="menu-title">Menu</div>
+
         <div class="menu-icons">
-            <div class="menu-icon current">
+            <div class="menu-icon" onclick="showPage('home')">
                 <i class="bi bi-house-door"></i>
+                <div class="menu-indicator"></div>
             </div>
-            <div class="menu-icon">
+            <div class="menu-icon" onclick="showPage('planilha')">
                 <i class="bi bi-file-earmark-spreadsheet"></i>
+                <div class="menu-indicator"></div>
             </div>
+            <!-- Adicione mais ícones conforme necessário -->
         </div>
 
         <div class="logout-button">
@@ -43,5 +49,18 @@
             </button>
         </div>        
     </div>
+
+    <!-- Conteúdo das páginas -->
+    <div id="home" class="page">
+        <h1>Cadastre ou procure template</h1>
+        <!-- Conteúdo da página Home -->
+    </div>
+
+    <div id="planilha" class="page">
+        <!-- Conteúdo da página Planilha -->
+        <p>Informações da Planilha</p>
+    </div>
+    
+    <script src="../../../public/js/userHome.js"></script>
 </body>
 </html>

@@ -31,6 +31,13 @@ header img {
     margin-left: 175px;
 }
 
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .sidebar {
     width: 175px;
     background-color: #FFFFFF;
@@ -149,4 +156,13 @@ header img {
 
 .logout-button button:hover {
     background-color: #1e8c81;
+}
+
+/* Adicione essas classes ao seu CSS */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
 }
