@@ -94,17 +94,44 @@
                     <input type="text" placeholder="Pesquisar por ID">
                     <button>Pesquisar</button>
                 </div>
-                <ul class="template-list" id="template-list">
-                    <!-- Os templates serão adicionados dinamicamente aqui -->
-                </ul>
+
+                <table class="template-table">
+                    <thead>
+                        <tr>
+                            <th>Nome do Template</th>
+                            <th>Squad</th>
+                            <th>Matrícula</th>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Downloads</th>
+                            <th>Uploads</th>
+                            <th>Status</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody id="template-list">
+                        <!-- Os templates serão adicionados dinamicamente aqui -->
+                    </tbody>
+                </table>
+
                 <div class="pagination" id="pagination">
-                    <!-- Botões de paginação aqui -->
-                </div>
+                    <button class="pagination-button" id="prev-page" onclick="prevPage()">
+                        <span><i class="bi bi-arrow-left"></i></span>
+                    </button>
+                    <ul class="pagination-list" id="pagination-list">
+                        <!-- Os botões de página serão adicionados dinamicamente aqui -->
+                    </ul>
+                    <button class="pagination-button" id="next-page" onclick="nextPage()">
+                        <span><i class="bi bi-arrow-right"></i></span>
+                    </button>
+                </div>                
+                
             </div>
         </div>
     </div>
 
     <script src="../../../public/js/commons/commons.js"></script>
+    <script src="../../../public/js/commons/pagination.js"></script>
 </body>
 
 </html>

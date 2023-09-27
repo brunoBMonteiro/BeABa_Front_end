@@ -377,3 +377,100 @@ header img {
 .pagination button:hover {
     background-color: #757575;
 }
+
+.template-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.template-table th, .template-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.template-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    color: #757575;
+}
+
+.template-table td {
+    background-color: #fff;
+    color: #757575;
+}
+
+.template-table td a {
+    text-decoration: none;
+    color: #29B3A8;
+}
+
+.template-table td a:hover {
+    text-decoration: underline;
+}
+
+.pagination {
+    position: absolute;
+    bottom: 35px;
+    right: 10px;
+    margin: 20px;
+    padding: 10px 0;
+}
+
+.pagination-button {
+    background-color: #29B3A8;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-button:hover {
+    background-color: #1e8c81;
+}
+
+.pagination-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.pagination-list-item {
+    margin: 0 5px;
+}
+
+.bi-arrow-left::before,
+.bi-arrow-right::before {
+    font-size: 20px;
+}
+
+.prev-page span,
+.next-page span {
+    display: flex;
+    align-items: center;
+}
+
+.template-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+/* Adicione esta classe CSS para destacar a página atual */
+.current-page {
+    background-color: #29B3A8;
+    color: #fff;
+    border-radius: 50%;
+}
