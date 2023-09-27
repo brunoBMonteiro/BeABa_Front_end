@@ -2,6 +2,7 @@ function showPage(pageId) {
     // Obtém o contêiner da mensagem de boas-vindas e todas as páginas
     const welcomeContainer = document.querySelector('.welcome-container');
     const pages = document.querySelectorAll('.page');
+    const dashboardContent = document.getElementById('dashboard-content');
 
     // Itera sobre todas as páginas e as oculta
     pages.forEach((page) => {
@@ -41,6 +42,12 @@ function showPage(pageId) {
     } else {
         planilhaContent.classList.remove('show');
     }
+
+    if (pageId === 'dashboard') {
+        dashboardContent.style.display = 'block';
+    } else {
+        dashboardContent.style.display = 'none';
+    }
 }
 
 // Obtém as referências para os botões e conteúdos
@@ -62,5 +69,3 @@ btnCadastrado.addEventListener('click', () => {
     cadastroContent.style.display = 'none';
     cadastradoContent.style.display = 'block';
 });
-
-
