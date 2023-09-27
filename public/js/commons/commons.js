@@ -32,4 +32,14 @@ function showPage(pageId) {
     } else {
         welcomeContainer.style.display = 'none';
     }
+
+    // Dentro da função showPage()
+    const planilhaContent = document.querySelector('.planilha-content');
+
+    if (pageId === 'planilha') {
+        planilhaContent.classList.add('show');
+    } else {
+        planilhaContent.classList.remove('show');
+    }
+
 }

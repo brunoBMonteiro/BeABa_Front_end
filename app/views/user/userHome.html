@@ -50,16 +50,27 @@
         </div>        
     </div>
 
-    <!-- Conteúdo das páginas -->
-    <div id="home" class="page">
-        <h1>Cadastre ou procure template</h1>
-        <!-- Conteúdo da página Home -->
-    </div>
-
     <div id="planilha" class="page">
-        <!-- Conteúdo da página Planilha -->
-        <p>Informações da Planilha</p>
-    </div>
+        <div class="planilha-content">
+            <!-- Conteúdo de "Cadastro" -->
+            <div class="cadastro-content">
+                <h1>Cadastre ou procure um template</h1>
+                <!-- Seu formulário de cadastro aqui -->
+            </div>
+            
+            <!-- Conteúdo de "Cadastrados" -->
+            <div class="cadastrados-content">
+                <h1>Templates Cadastrados</h1>
+                <!-- Sua lista de templates cadastrados aqui -->
+            </div>
+            
+            <!-- Setas para rolar entre "Cadastro" e "Cadastrados" -->
+            <div class="scroll-arrows">
+                <div class="left-arrow" onclick="scrollToCadastro()"></div>
+                <div class="right-arrow" onclick="scrollToCadastrados()"></div>
+            </div>
+        </div>
+    </div>    
     
     <script src="../../../public/js/commons/commons.js"></script>
 </body>

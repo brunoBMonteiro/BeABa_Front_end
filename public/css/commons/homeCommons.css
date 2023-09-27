@@ -121,7 +121,7 @@ header img {
 .menu-icon.active .menu-indicator {
     width: 50%; 
     height: 2px;
-    background-color: #004ff8; /* Cor do traço */
+    background-color: #757575; 
     position: absolute;
     bottom: -3px;
     left: 50%; 
@@ -165,3 +165,45 @@ header img {
 .page.active {
     display: block;
 }
+
+.planilha-content {
+    background-color: #D9D9D9;
+    position: fixed;
+    top: 60%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    width: 1191px;
+    height: 700px;
+    padding: 20px;
+    text-align: center;
+    display: none;
+    z-index: 1000; 
+}
+
+.planilha-content h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #757575;
+    font: bold;
+}
+
+.planilha-content.show {
+    display: block;
+}
+
+.centered-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #D9DD9D9D99D9;
+    width: 1191px;
+    height: 783px;
+    text-align: center;
+    padding: 20px;
+}
+
