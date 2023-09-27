@@ -188,15 +188,15 @@ header img {
 .navigation-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #29B3A8; 
-    color: #fff; 
+    background-color: #29B3A8;
+    color: #fff;
     border: none;
     cursor: pointer;
     position: absolute;
-    bottom: 10px; 
-    border-radius: 5px; 
+    bottom: 10px;
+    border-radius: 5px;
     font-weight: bold;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease;
 }
 
 #btnCadastro {
@@ -204,11 +204,11 @@ header img {
 }
 
 #btnCadastrado {
-    right: 10px; 
+    right: 10px;
 }
 
 .navigation-button:hover {
-    background-color: #757575; 
+    background-color: #757575;
 }
 
 #cadastro-content {
@@ -219,8 +219,8 @@ header img {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
+    align-items: center;
+    justify-content: center;
     height: 80%;
     width: 400px;
     margin: 60px auto;
@@ -231,13 +231,13 @@ header img {
     font-size: 24px;
     margin-bottom: 20px;
     color: #29B3A8;
-    text-align: center; 
+    text-align: center;
 }
 
 #template-form {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     width: 100%;
 }
 
@@ -245,7 +245,7 @@ header img {
     margin-bottom: 10px;
     font-weight: bold;
     color: #29B3A8;
-    text-align: left; 
+    text-align: left;
 }
 
 #template-form select,
@@ -284,16 +284,15 @@ header img {
     text-align: center;
     margin-top: 60px;
     height: 80%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #cadastrado-content h2 {
     font-size: 24px;
     margin-bottom: 20px;
-    text-align: center; 
+    text-align: center;
     color: #29B3A8;
 }
-
 
 #search-box {
     display: flex;
@@ -331,7 +330,6 @@ header img {
     cursor: pointer;
 }
 
-
 .template-list {
     list-style: none;
     padding: 0;
@@ -343,7 +341,7 @@ header img {
     border-radius: 5px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .template-list li h3 {
@@ -359,7 +357,7 @@ header img {
 
 .pagination {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end; /* Alterado para alinhar à direita */
     align-items: center;
     margin-top: 20px;
 }
@@ -378,6 +376,7 @@ header img {
     background-color: #757575;
 }
 
+/* Estilo da tabela de templates */
 .template-table {
     width: 100%;
     border-collapse: collapse;
@@ -410,34 +409,6 @@ header img {
     text-decoration: underline;
 }
 
-.pagination {
-    position: absolute;
-    bottom: 35px;
-    right: 10px;
-    margin: 20px;
-    padding: 10px 0;
-}
-
-.pagination-button {
-    background-color: #29B3A8;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    font-size: 20px;
-    margin: 0 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
-}
-
-.pagination-button:hover {
-    background-color: #1e8c81;
-}
-
 .pagination-list {
     list-style: none;
     display: flex;
@@ -445,32 +416,26 @@ header img {
     padding: 0;
 }
 
-.pagination-list-item {
-    margin: 0 5px;
-}
-
-.bi-arrow-left::before,
-.bi-arrow-right::before {
-    font-size: 20px;
-}
-
-.prev-page span,
-.next-page span {
+.pagination-number {
+    background-color: #fff;
+    color: #757575;
+    border: 1px solid #ccc;
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.template-item {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #fff;
+.pagination-number:hover {
+    background-color: #f0f0f0;
 }
 
-/* Adicione esta classe CSS para destacar a página atual */
 .current-page {
     background-color: #29B3A8;
     color: #fff;
-    border-radius: 50%;
 }
+

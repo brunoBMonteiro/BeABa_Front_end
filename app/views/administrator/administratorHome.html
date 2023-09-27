@@ -81,7 +81,7 @@
                         <label for="tipo-arquivo">Tipo de Arquivo:</label>
                         <select id="tipo-arquivo" name="tipo-arquivo">
                             <option value="">Tipo de arquivo</option>
-                            <option value="sls">XLS</option>
+                            <option value="sls">SLS</option>
                             <option value="xlsx">XLSX</option>
                             <option value="csv">CSV</option>
                         </select>
@@ -110,12 +110,31 @@
                     <input type="text" placeholder="Pesquisar por ID">
                     <button>Pesquisar</button>
                 </div>
-                <ul class="template-list" id="template-list">
-                    <!-- Os templates serão adicionados dinamicamente aqui -->
-                </ul>
+
+                <table class="template-table">
+                    <thead>
+                        <tr>
+                            <th>Nome do Template</th>
+                            <th>Squad</th>
+                            <th>Matrícula</th>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Downloads</th>
+                            <th>Uploads</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="template-list">
+                        <!-- Os templates serão adicionados dinamicamente aqui -->
+                    </tbody>
+                </table>
+
                 <div class="pagination" id="pagination">
-                    <!-- Botões de paginação aqui -->
-                </div>
+                    <ul class="pagination-list" id="pagination-list">
+                        <!-- Os botões de página serão adicionados dinamicamente aqui -->
+                    </ul>
+                </div>                
+                
             </div>
         </div>
     </div>
@@ -148,6 +167,7 @@
     </div>
 
     <script src="../../../public/js/commons/commons.js"></script>
+    <script src="../../../public/js/commons/pagination.js"></script>
 </body>
 
 </html>
