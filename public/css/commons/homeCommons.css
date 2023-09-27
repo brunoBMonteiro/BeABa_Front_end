@@ -319,13 +319,12 @@ header img {
     cursor: pointer;
 }
 
-/* Estilização do ícone de lupa */
 .search-icon {
     position: absolute;
     right: 92px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 1.2rem; /* Tamanho do ícone de lupa */
+    font-size: 1.2rem; 
     color: #29B3A8;
     cursor: pointer;
 }
@@ -357,7 +356,7 @@ header img {
 
 .pagination {
     display: flex;
-    justify-content: flex-end; /* Alterado para alinhar à direita */
+    justify-content: flex-end; 
     align-items: center;
     margin-top: 20px;
 }
@@ -376,28 +375,31 @@ header img {
     background-color: #757575;
 }
 
-/* Estilo da tabela de templates */
 .template-table {
     width: 100%;
-    border-collapse: collapse;
     margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
 .template-table th, .template-table td {
-    border: 1px solid #ccc;
     padding: 10px;
     text-align: center;
+    color: #29B3A8;
 }
 
 .template-table th {
     background-color: #f0f0f0;
     font-weight: bold;
     color: #757575;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1); 
 }
 
 .template-table td {
     background-color: #fff;
     color: #757575;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
 }
 
 .template-table td a {
@@ -438,4 +440,3 @@ header img {
     background-color: #29B3A8;
     color: #fff;
 }
-
