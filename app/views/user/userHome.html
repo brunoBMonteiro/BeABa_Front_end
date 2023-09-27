@@ -54,14 +54,58 @@
 
     <div id="planilha" class="page">
         <div class="planilha-content">
-            <div class="cadastro-content">
-                <h1>Cadastre ou procure um template</h1>
 
-                
+            <button class="navigation-button" id="btnCadastro">Ir para Cadastrar template</button>
+            <button class="navigation-button" id="btnCadastrado">Ir para Templates Cadastrados</button>
+            
+            <div class="content active-content" id="cadastro-content">
+                <h2>Cadastrar Template</h2>
+                <form id="template-form">
+                    <div>
+                        <label for="tipo-arquivo">Tipo de Arquivo:</label>
+                        <select id="tipo-arquivo" name="tipo-arquivo">
+                            <option value="">Tipo de arquivo</option>
+                            <option value="sls">SLS</option>
+                            <option value="xlsx">XLSX</option>
+                            <option value="csv">CSV</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="nome-template">Nome do Template:</label>
+                        <input type="text" id="nome-template" name="nome-template" required>
+                    </div>
+                    <div>
+                        <label for="num-colunas">Número de Colunas:</label>
+                        <input type="number" id="num-colunas" name="num-colunas" required>
+                    </div>
+                    <div>
+                        <label for="nome-coluna">Nome da Coluna:</label>
+                        <input type="text" id="nome-coluna" name="nome-coluna" required>
+                    </div>
+                    <button type="submit">Cadastrar</button>
+                </form>
             </div>
+            
+
+            <div class="content" id="cadastrado-content">
+                <h2>Templates Cadastrados</h2>
+                <div id="search-box">
+                    <span class="search-icon"><i class="bi bi-search"></i></span>
+                    <input type="text" placeholder="Pesquisar por ID">
+                    <button>Pesquisar</button>
+                </div>
+                <ul class="template-list" id="template-list">
+                    <!-- Os templates serão adicionados dinamicamente aqui -->
+                </ul>
+                <div class="pagination" id="pagination">
+                    <!-- Botões de paginação aqui -->
+                </div>
+            </div>
+            
 
         </div>
     </div>
+
 
     <script src="../../../public/js/commons/commons.js"></script>
 </body>

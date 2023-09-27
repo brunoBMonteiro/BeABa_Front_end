@@ -41,5 +41,26 @@ function showPage(pageId) {
     } else {
         planilhaContent.classList.remove('show');
     }
-
 }
+
+// Obtém as referências para os botões e conteúdos
+const btnCadastro = document.getElementById('btnCadastro');
+const btnCadastrado = document.getElementById('btnCadastrado');
+const cadastroContent = document.getElementById('cadastro-content');
+const cadastradoContent = document.getElementById('cadastrado-content');
+
+// Oculta a página "Templates Cadastrados" inicialmente
+cadastradoContent.style.display = 'none';
+
+// Define os eventos de clique para os botões
+btnCadastro.addEventListener('click', () => {
+    cadastroContent.style.display = 'block';
+    cadastradoContent.style.display = 'none';
+});
+
+btnCadastrado.addEventListener('click', () => {
+    cadastroContent.style.display = 'none';
+    cadastradoContent.style.display = 'block';
+});
+
+
