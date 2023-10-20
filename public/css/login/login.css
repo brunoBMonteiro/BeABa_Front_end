@@ -70,7 +70,8 @@ header img {
 }
 
 .login input[type="email"],
-.login input[type="password"] {
+.login input[type="password"],
+.login input[type="text"] { /* Adicionei input[type="text"] */
     width: 93%;
     padding: 10px;
     margin-bottom: 10px;
