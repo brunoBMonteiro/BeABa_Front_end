@@ -128,17 +128,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
     previewBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        let previewHTML = "<ul>";
+        let previewHTML = '<div class="preview-columns">';
 
         const colunaNames = document.querySelectorAll('.input-coluna-nome');
         const colunaTypes = document.querySelectorAll('.select-coluna-tipo');
 
         colunaNames.forEach((input, index) => {
             const type = colunaTypes[index].value;
-            previewHTML += `<li>${input.value} (${type})</li>`;
+            previewHTML += `<div class="preview-column">${input.value} (${type})</div>`;
         });
 
-        previewHTML += "</ul>";
+        previewHTML += '</div>';
 
         previewContent.innerHTML = previewHTML;
         previewModal.style.display = 'block';
@@ -149,6 +149,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 });
+
 
 // Captura o formulário
 const templateForm = document.getElementById('template-form');
