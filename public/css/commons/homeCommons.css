@@ -237,7 +237,7 @@ header img {
 #template-form {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center; /* Alterado de 'flex-start' para 'center' */
     width: 100%;
 }
 
@@ -245,18 +245,19 @@ header img {
     margin-bottom: 10px;
     font-weight: bold;
     color: #29B3A8;
-    text-align: left;
+    text-align: center; /* Alterado de 'left' para 'center' */
 }
 
 #template-form select,
 #template-form input[type="text"],
 #template-form input[type="number"] {
-    width: 100%;
+    width: 80%;
     padding: 10px;
     border: 1px solid #29B3A8;
     border-radius: 5px;
     margin-bottom: 20px;
     margin-top: 10px;
+    text-align: center; /* Adicionado para centralizar o texto dentro dos campos */
 }
 
 #template-form button[type="submit"] {
@@ -439,4 +440,136 @@ header img {
 .current-page {
     background-color: #29B3A8;
     color: #fff;
+}
+
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); 
+    z-index: 2000;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: #FFFFFF;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 5px;
+    width: 60%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 1;
+    padding: 0;
+    color: #757575;
+}
+
+.close-button:hover {
+    color: #29B3A8;
+}
+
+.modal-content button[type="submit"] {
+    margin-top: 20px;
+    align-self: flex-end;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between; 
+    gap: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.colunas-container {
+    height: 200px; /* Altura fixa */
+    overflow-y: scroll;  /* Sempre mostrar a barra de rolagem */
+    margin-bottom: 20px; 
+    border: 1px solid #ccc; 
+    padding: 10px;
+    width: 80%; 
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
+#preview-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+#preview-content {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 80%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#preview-content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#preview-content li {
+    padding: 10px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 16px;
+    color: #333;
+}
+
+#close-preview-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #999;
+}
+
+#close-preview-modal:hover {
+    color: #333;
+}
+
+.removeField {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.removeField:hover {
+    background-color: #d32f2f;
 }

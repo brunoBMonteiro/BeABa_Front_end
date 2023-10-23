@@ -77,6 +77,7 @@
             <div class="content active-content" id="cadastro-content">
                 <h2>Cadastrar Template</h2>
                 <form id="template-form">
+                    <!-- Tipo de arquivo e nome do template -->
                     <div>
                         <label for="tipo-arquivo">Tipo de Arquivo:</label>
                         <select id="tipo-arquivo" name="tipo-arquivo">
@@ -90,17 +91,45 @@
                         <label for="nome-template">Nome do Template:</label>
                         <input type="text" id="nome-template" name="nome-template" required>
                     </div>
-                    <div>
-                        <label for="num-colunas">Número de Colunas:</label>
-                        <input type="number" id="num-colunas" name="num-colunas" required>
+                    
+                    <!-- Contêiner para as colunas -->
+                    <div class="colunas-container">
+                        <!-- Seção de colunas, que pode ser repetida dinamicamente -->
+                        <div class="coluna-template">
+                            <div>
+                                <label for="nome-coluna">Nome da Coluna:</label>
+                                <input type="text" class="input-coluna-nome" required>
+                            </div>
+                            <div>
+                                <label for="tipo-coluna">Tipo de Dado:</label>
+                                <select class="select-coluna-tipo">
+                                    <option value="VARCHAR">Texto</option>
+                                    <option value="INT">Número</option>
+                                    <!-- Outros tipos conforme necessidade -->
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <label for="nome-coluna">Nome da Coluna:</label>
-                        <input type="text" id="nome-coluna" name="nome-coluna" required>
-                    </div>
-                    <button type="submit">Cadastrar</button>
+                    
+                    <div class="buttons-container">
+                        <button id="addField">Adicionar Campo</button>
+                        <button id="removeField">Remover Coluna</button>
+                        <button id="previewBtn">Preview</button>
+                    </div>                    
                 </form>
-            </div>
+            </div>                      
+            
+            <!-- Modal de Pré-visualização -->
+            <div class="modal" id="preview-modal">
+                <div class="modal-content">
+                    <span class="close-button" id="close-preview-modal">&times;</span>
+                    <h3>Pré-visualização do Template</h3>
+                    <!-- Aqui será inserido dinamicamente o preview -->
+                    <div id="preview-content"></div>
+            
+                    <button type="submit" form="template-form">Salvar Template</button>
+                </div>
+            </div>            
             
 
             <div class="content" id="cadastrado-content">
