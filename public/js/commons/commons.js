@@ -150,12 +150,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-
 // Captura o formulário
 const templateForm = document.getElementById('template-form');
 
-// Adiciona um evento de envio ao formulário
-templateForm.addEventListener('submit', function (e) {
+// Captura o botão "Salvar Template" que agora está dentro do modal
+const saveTemplateButton = document.querySelector("#preview-modal button[type='submit']");
+
+// Adiciona um evento de clique ao botão "Salvar Template"
+saveTemplateButton.addEventListener('click', function (e) {
     e.preventDefault(); // Impede o envio padrão do formulário
 
     // Chama a função para salvar o template
@@ -170,39 +172,53 @@ function getFieldValue(fieldName) {
     return null;
 }
 
+function getTemplateFields() {
+    let fields = {};
+    const colunaTemplates = templateForm.querySelectorAll('.coluna-template');
+    colunaTemplates.forEach(coluna => {
+        const nome = coluna.querySelector('.input-coluna-nome').value;
+        const tipo = coluna.querySelector('.select-coluna-tipo').value;
+        fields[nome] = tipo;
+    });
+    console.log("Campos do template:", fields); // Log dos campos do template
+    return fields;
+}
+
 function saveTemplate() {
     const url = 'http://localhost:3000/templates';
     
     // Coletando os dados do formulário manualmente
     let templateData = {
-        nome_template: templateForm.querySelector('input[name="nome_template"]').value,
-        extensao_template: templateForm.querySelector('input[name="extensao_template"]').value,
-        data_cadastrado: templateForm.querySelector('input[name="data_cadastrado"]').value,
-        status: templateForm.querySelector('input[name="status"]').checked,
-        quantidade_linhas: parseInt(templateForm.querySelector('input[name="quantidade_linhas"]').value),
-        campos_template: JSON.parse(templateForm.querySelector('textarea[name="campos_template"]').value),
-        id_usuario_cadastrado: parseInt(templateForm.querySelector('input[name="id_usuario_cadastrado"]').value)
+        nome_template: getFieldValue('nome_template'),
+        extensao_template: getFieldValue('extensao_template'),
+        data_cadastrado: getFieldValue('data_cadastrado'),
+        status: getFieldValue('status'),
+        quantidade_linhas: parseInt(getFieldValue('quantidade_linhas')),
+        campos_template: getTemplateFields()
     };
 
+    const token = localStorage.getItem('jwtToken'); // Pegar o token do localStorage
+
+    // Adicionando o token JWT no cabeçalho da requisição
     fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}` // Usando o token diretamente
         },
         body: JSON.stringify(templateData)
     })
-    .then(response => response.json())
+    .then(response => {
+        return response.json();
+    })
     .then(data => {
         if (data.success) {
             console.log('Template salvo com sucesso!');
-            // Adicione aqui qualquer ação adicional após o sucesso
         } else {
             console.error('Erro ao salvar o template:', data.message || 'Erro desconhecido');
-            // Adicione aqui o tratamento de erros
         }
     })
     .catch(error => {
         console.error('Erro ao enviar a requisição:', error);
-        // Adicione aqui o tratamento de erros de rede
     });
 }

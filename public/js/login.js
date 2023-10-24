@@ -42,8 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
+
             if (data.token) {
-                localStorage.setItem('token', data.token); // Armazenando o token no local storage
+                localStorage.setItem('jwtToken', data.token); // Armazenando o token no local storage com a chave 'jwtToken'
 
                 if (data.perfil === 'Padrão') {
                     window.location.href = 'http://127.0.0.1:5500/app/views/user/userHome.html';
