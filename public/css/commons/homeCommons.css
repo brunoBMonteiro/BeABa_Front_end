@@ -215,7 +215,7 @@ header img {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 20px;
+    padding: 40px 20px 20px 20px; /* Aumentar o padding-top */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
@@ -223,13 +223,16 @@ header img {
     justify-content: center;
     height: 80%;
     width: 400px;
-    margin: 60px auto;
+    margin: 40px auto; /* Reduzir a margem superior para compensar o aumento do padding */
     text-align: center;
+    overflow-y: auto;
+    max-height: 90vh;
 }
 
 #cadastro-content h2 {
     font-size: 24px;
     margin-bottom: 20px;
+    margin-top: 0; /* Remover margem superior */
     color: #29B3A8;
     text-align: center;
 }
@@ -611,4 +614,24 @@ header img {
     margin: 0;
     padding: 0;
     list-style-type: none;
+}
+
+.save-button-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#preview-modal button[type="submit"] {
+    background-color: #29B3A8;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#preview-modal button[type="submit"]:hover {
+    background-color: #757575;
 }

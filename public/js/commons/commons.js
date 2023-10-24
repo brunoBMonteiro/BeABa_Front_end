@@ -162,13 +162,34 @@ templateForm.addEventListener('submit', function (e) {
     saveTemplate();
 });
 
+function getFieldValue(fieldName) {
+    const field = templateForm.querySelector(`[name="${fieldName}"]`);
+    if (field) {
+        return field.type === 'checkbox' ? field.checked : field.value;
+    }
+    return null;
+}
+
 function saveTemplate() {
-    const url = 'http://localhost:3000/templates'; // A URL da rota de salvamento no backend
-    const formData = new FormData(templateForm); // Use o mesmo formulário que foi capturado acima
+    const url = 'http://localhost:3000/templates';
+    
+    // Coletando os dados do formulário manualmente
+    let templateData = {
+        nome_template: templateForm.querySelector('input[name="nome_template"]').value,
+        extensao_template: templateForm.querySelector('input[name="extensao_template"]').value,
+        data_cadastrado: templateForm.querySelector('input[name="data_cadastrado"]').value,
+        status: templateForm.querySelector('input[name="status"]').checked,
+        quantidade_linhas: parseInt(templateForm.querySelector('input[name="quantidade_linhas"]').value),
+        campos_template: JSON.parse(templateForm.querySelector('textarea[name="campos_template"]').value),
+        id_usuario_cadastrado: parseInt(templateForm.querySelector('input[name="id_usuario_cadastrado"]').value)
+    };
 
     fetch(url, {
         method: 'POST',
-        body: formData, // Use os dados do formulário diretamente, não é necessário transformá-los em JSON
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(templateData)
     })
     .then(response => response.json())
     .then(data => {
@@ -176,7 +197,7 @@ function saveTemplate() {
             console.log('Template salvo com sucesso!');
             // Adicione aqui qualquer ação adicional após o sucesso
         } else {
-            console.error('Erro ao salvar o template:', data.message);
+            console.error('Erro ao salvar o template:', data.message || 'Erro desconhecido');
             // Adicione aqui o tratamento de erros
         }
     })
