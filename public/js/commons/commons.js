@@ -209,6 +209,7 @@ function saveTemplate() {
         body: JSON.stringify(templateData)
     })
     .then(response => {
+        console.log("Resposta do servidor:", response); // Log da resposta do servidor
         return response.json();
     })
     .then(data => {
