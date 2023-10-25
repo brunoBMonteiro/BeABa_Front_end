@@ -8,17 +8,17 @@ document.addEventListener('DOMContentLoaded', function() {
         if (passwordInput.type === 'password') {
             const clone = passwordInput.cloneNode(true);
             clone.type = 'text';
-            clone.value = passwordInput.value;  // Manter o valor do campo de senha
+            clone.value = passwordInput.value;
             passwordInput.parentNode.replaceChild(clone, passwordInput);
             passwordToggle.innerHTML = '<i class="bi bi-eye-slash-fill"></i>';
-            passwordInput = clone;  // Atualize a referência
+            passwordInput = clone;
         } else {
             const clone = passwordInput.cloneNode(true);
             clone.type = 'password';
-            clone.value = passwordInput.value;  // Manter o valor do campo de senha
+            clone.value = passwordInput.value;
             passwordInput.parentNode.replaceChild(clone, passwordInput);
             passwordToggle.innerHTML = '<i class="bi bi-eye-fill"></i>';
-            passwordInput = clone;  // Atualize a referência
+            passwordInput = clone;
         }
     });
 
@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const email = emailInput.value;
         const password = passwordInput.value;
+        console.log("Dados de login:", { email, password });
 
         if (!email || !password) {
             alert('Por favor, preencha ambos os campos, email e senha.');
@@ -42,9 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
+            console.log("Resposta do servidor:", data);
 
             if (data.token) {
-                localStorage.setItem('jwtToken', data.token); // Armazenando o token no local storage com a chave 'jwtToken'
+                localStorage.setItem('jwtToken', data.token);
+                console.log("Token JWT armazenado:", data.token);
 
                 if (data.perfil === 'Padrão') {
                     window.location.href = 'http://127.0.0.1:5500/app/views/user/userHome.html';

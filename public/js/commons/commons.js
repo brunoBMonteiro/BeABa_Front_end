@@ -73,7 +73,7 @@ btnCadastrado.addEventListener('click', () => {
 const btnLogout = document.getElementById('btnLogout');
 
 if (btnLogout) {  // Adicionando uma verificação para garantir que o botão de logout exista na página atual
-    btnLogout.addEventListener('click', function() {
+    btnLogout.addEventListener('click', function () {
         // Remove o token do local storage
         localStorage.removeItem('token');
 
@@ -83,14 +83,14 @@ if (btnLogout) {  // Adicionando uma verificação para garantir que o botão de
 }
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     // Adicionar/remover colunas
     const addFieldBtn = document.getElementById('addField');
     const removeFieldBtn = document.getElementById('removeField');
     const colunasContainer = document.querySelector('.colunas-container');
 
-    addFieldBtn.addEventListener('click', function(e) {
+    addFieldBtn.addEventListener('click', function (e) {
         e.preventDefault();
         const colunaTemplate = document.createElement('div');
         colunaTemplate.classList.add('coluna-template');
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function() {
         colunasContainer.appendChild(colunaTemplate);
     });
 
-    removeFieldBtn.addEventListener('click', function(e) {
+    removeFieldBtn.addEventListener('click', function (e) {
         e.preventDefault();
         const colunas = document.querySelectorAll('.coluna-template');
         if (colunas.length > 1) { // Garante que ao menos uma coluna sempre exista
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const previewContent = document.getElementById('preview-content');
     const closePreviewModalBtn = document.getElementById('close-preview-modal');
 
-    previewBtn.addEventListener('click', function(e) {
+    previewBtn.addEventListener('click', function (e) {
         e.preventDefault();
         let previewHTML = '<div class="preview-columns">';
 
@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function() {
         previewModal.style.display = 'block';
     });
 
-    closePreviewModalBtn.addEventListener('click', function() {
+    closePreviewModalBtn.addEventListener('click', function () {
         previewModal.style.display = 'none';
     });
 
@@ -185,8 +185,16 @@ function getTemplateFields() {
 }
 
 function saveTemplate() {
+    const token = localStorage.getItem('jwtToken');
+    console.log("Token JWT:", token);
+    if (!token) {
+        alert('Por favor, faça login novamente.');
+        return;
+    }
+
+
     const url = 'http://localhost:3000/templates';
-    
+
     // Coletando os dados do formulário manualmente
     let templateData = {
         nome_template: getFieldValue('nome_template'),
@@ -196,8 +204,8 @@ function saveTemplate() {
         quantidade_linhas: parseInt(getFieldValue('quantidade_linhas')),
         campos_template: getTemplateFields()
     };
+    console.log("Dados do template a serem enviados:", templateData);
 
-    const token = localStorage.getItem('jwtToken'); // Pegar o token do localStorage
 
     // Adicionando o token JWT no cabeçalho da requisição
     fetch(url, {
@@ -208,18 +216,20 @@ function saveTemplate() {
         },
         body: JSON.stringify(templateData)
     })
-    .then(response => {
-        console.log("Resposta do servidor:", response); // Log da resposta do servidor
-        return response.json();
-    })
-    .then(data => {
-        if (data.success) {
-            console.log('Template salvo com sucesso!');
-        } else {
-            console.error('Erro ao salvar o template:', data.message || 'Erro desconhecido');
-        }
-    })
-    .catch(error => {
-        console.error('Erro ao enviar a requisição:', error);
-    });
+        .then(response => {
+            console.log("Resposta do servidor:", response); // Log da resposta do servidor
+            return response.json();
+        })
+        .then(data => {
+            console.log("Dados recebidos do servidor:", data);
+            if (data.mensagem === "Template cadastrado com sucesso") {
+                alert('Template salvo com sucesso!'); // Adicionado um alerta para informar ao usuário
+                console.log('Template salvo com sucesso!');
+            } else {
+                console.error('Erro ao salvar o template:', data.mensagem || 'Erro desconhecido');
+            }
+        })        
+        .catch(error => {
+            console.error('Erro ao enviar a requisição:', error);
+        });
 }
