@@ -180,7 +180,6 @@ function getTemplateFields() {
         const tipo = coluna.querySelector('.select-coluna-tipo').value;
         fields[nome] = tipo;
     });
-    console.log("Campos do template:", fields); // Log dos campos do template
     return fields;
 }
 
@@ -191,7 +190,6 @@ function saveTemplate() {
         alert('Por favor, faça login novamente.');
         return;
     }
-
 
     const url = 'http://localhost:3000/templates';
 
@@ -204,8 +202,6 @@ function saveTemplate() {
         quantidade_linhas: parseInt(getFieldValue('quantidade_linhas')),
         campos_template: getTemplateFields()
     };
-    console.log("Dados do template a serem enviados:", templateData);
-
 
     // Adicionando o token JWT no cabeçalho da requisição
     fetch(url, {
@@ -221,7 +217,6 @@ function saveTemplate() {
             return response.json();
         })
         .then(data => {
-            console.log("Dados recebidos do servidor:", data);
             if (data.mensagem === "Template cadastrado com sucesso") {
                 alert('Template salvo com sucesso!'); // Adicionado um alerta para informar ao usuário
                 templateForm.reset();
@@ -231,6 +226,8 @@ function saveTemplate() {
                 if (previewModal) {
                     previewModal.style.display = 'none';
                 }
+
+                fetchTemplates();
             } else {
                 console.error('Erro ao salvar o template:', data.mensagem || 'Erro desconhecido');
             }
@@ -238,4 +235,54 @@ function saveTemplate() {
         .catch(error => {
             console.error('Erro ao enviar a requisição:', error);
         });
+}
+
+
+// Referência para o botão de pesquisa e o campo de input
+const searchButton = document.querySelector("#search-box button");
+const searchIdInput = document.getElementById("search-id-input");
+
+searchButton.addEventListener('click', function() {
+    // Pega o ID inserido pelo usuário
+    const templateId = searchIdInput.value;
+
+    if (templateId) {
+        // Se um ID foi inserido, busca o template com esse ID
+        fetch(`http://localhost:3000/templates/${templateId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.template) {
+                // Se um template for encontrado, exibe-o na tabela
+                displaySingleTemplate(data.template);
+            } else {
+                alert('Template não encontrado!');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao buscar o template:', error);
+        });
+    } else {
+        // Se nenhum ID foi inserido, exibe a lista completa de templates
+        fetchTemplates();
+    }
+});
+
+function displaySingleTemplate(template) {
+    // Limpa a tabela
+    const templateList = document.getElementById("template-list");
+    templateList.innerHTML = '';
+
+    // Cria uma nova linha para o template
+    const templateRow = document.createElement('tr');
+    templateRow.innerHTML = `
+        <td>${template.nome_template}</td>
+        <td>${template.extensao_template}</td>
+        <td>${template.usuario.matricula}</td>
+        <td>${template.id_template}</td>
+        <td>${template.usuario.email}</td>
+        <td>${template.downloads}</td>
+        <td>${template.uploads}</td>
+        <td>${template.status ? 'Ativo' : 'Inativo'}</td>
+    `;
+    templateList.appendChild(templateRow);
 }
