@@ -224,7 +224,13 @@ function saveTemplate() {
             console.log("Dados recebidos do servidor:", data);
             if (data.mensagem === "Template cadastrado com sucesso") {
                 alert('Template salvo com sucesso!'); // Adicionado um alerta para informar ao usuário
-                console.log('Template salvo com sucesso!');
+                templateForm.reset();
+
+                // Fechar o modal de pré-visualização
+                const previewModal = document.getElementById('preview-modal');
+                if (previewModal) {
+                    previewModal.style.display = 'none';
+                }
             } else {
                 console.error('Erro ao salvar o template:', data.mensagem || 'Erro desconhecido');
             }
