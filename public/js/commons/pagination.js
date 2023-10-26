@@ -23,20 +23,22 @@ function displayTemplates(templates, page) {
   templateList.innerHTML = '';
 
   displayedTemplates.forEach((template) => {
+    const iconClass = template.status ? 'icon-active' : 'icon-inactive';
     const templateRow = document.createElement('tr');
     templateRow.innerHTML = `
-        <td>${template.nome_template}</td>          
-        <td>${template.extensao_template}</td>     
-        <td>${template.usuario.matricula}</td>              
-        <td>${template.id_template}</td>                     
-        <td>${template.usuario.email}</td>                  
-        <td>${template.downloads}</td>              
-        <td>${template.uploads}</td>                
-        <td>${template.status ? 'Ativo' : 'Inativo'}
+        <td>${template.nome_template}</td>
+        <td>${template.extensao_template}</td>
+        <td>${template.usuario.matricula}</td>
+        <td>${template.id_template}</td>
+        <td>${template.usuario.email}</td>
+        <td><i class="bi bi-download ${iconClass}" title="Download"></i></td>
+        <td><i class="bi bi-upload ${iconClass}" title="Upload"></i></td>
+        <td>${template.status ? 'Ativo' : 'Inativo'}</td>
     `;
     templateList.appendChild(templateRow);
   });
 }
+
 
 function createPaginationButtons(templates) {
   const totalPages = Math.ceil(templates.length / recordsPerPage);

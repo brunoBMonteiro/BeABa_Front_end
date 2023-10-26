@@ -635,3 +635,21 @@ header img {
 #preview-modal button[type="submit"]:hover {
     background-color: #757575;
 }
+
+
+/* Tamanho padrão dos ícones */
+.bi {
+    font-size: 19px; /* Ajuste o valor conforme desejado */
+}
+
+/* Ícones quando o status for "Ativo" */
+.icon-active {
+    color: rgb(84, 112, 84);
+    cursor: pointer;
+}
+
+/* Ícones quando o status for "Inativo" */
+.icon-inactive {
+    color: rgb(194, 9, 9);
+    cursor: not-allowed;
+}
