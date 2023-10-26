@@ -236,7 +236,9 @@ function displaySingleTemplate(template) {
     const templateList = document.getElementById("template-list");
     templateList.innerHTML = '';
 
-    const iconClass = template.status ? 'icon-active' : 'icon-inactive'; 
+    const downloadIconClass = template.status ? 'icon-active download-upload-icon' : 'icon-inactive download-upload-icon';
+    const uploadIconClass = template.status ? 'icon-active download-upload-icon' : 'icon-inactive download-upload-icon';
+
     // Cria uma nova linha para o template
     const templateRow = document.createElement('tr');
     templateRow.innerHTML = `
@@ -245,8 +247,8 @@ function displaySingleTemplate(template) {
         <td>${template.usuario.matricula}</td>
         <td>${template.id_template}</td>
         <td>${template.usuario.email}</td>
-        <td><i class="bi bi-download ${iconClass}" title="Download"></i></td>
-        <td><i class="bi bi-upload ${iconClass}" title="Upload"></i></td>
+        <td><i class="bi bi-download ${downloadIconClass}" title="Download"></i></td>
+        <td><i class="bi bi-upload ${uploadIconClass}" title="Upload"></i></td>
         <td>${template.status ? 'Ativo' : 'Inativo'}</td>
     `;
     templateList.appendChild(templateRow);
