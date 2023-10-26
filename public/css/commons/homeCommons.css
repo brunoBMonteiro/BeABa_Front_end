@@ -379,6 +379,11 @@ header img {
     background-color: #757575;
 }
 
+.pagination button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
 .template-table {
     width: 100%;
     margin-top: 20px;
