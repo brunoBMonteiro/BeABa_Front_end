@@ -20,31 +20,38 @@ btnCadastrado.addEventListener('click', () => {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Adicionar/remover colunas
+    // Adicionar/remover colunas/define e verifica tamanho de colunas
     const addFieldBtn = document.getElementById('addField');
     const removeFieldBtn = document.getElementById('removeField');
     const colunasContainer = document.querySelector('.colunas-container');
 
     addFieldBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        const colunaTemplate = document.createElement('div');
-        colunaTemplate.classList.add('coluna-template');
+        const maxColumns = parseInt(document.getElementById('quantidade-linhas').value);
+        const currentColumns = document.querySelectorAll('.coluna-template').length;
 
-        colunaTemplate.innerHTML = `
-            <div>
-                <label for="nome-coluna">Nome da Coluna:</label>
-                <input type="text" class="input-coluna-nome" required>
-            </div>
-            <div>
-                <label for="tipo-coluna">Tipo de Dado:</label>
-                <select class="select-coluna-tipo">
-                    <option value="VARCHAR">Texto</option>
-                    <option value="INT">Número</option>
-                </select>
-            </div>
-        `;
+        if (currentColumns < maxColumns) {
+            const colunaTemplate = document.createElement('div');
+            colunaTemplate.classList.add('coluna-template');
 
-        colunasContainer.appendChild(colunaTemplate);
+            colunaTemplate.innerHTML = `
+                <div>
+                    <label for="nome-coluna">Nome da Coluna:</label>
+                    <input type="text" class="input-coluna-nome" required>
+                </div>
+                <div>
+                    <label for="tipo-coluna">Tipo de Dado:</label>
+                    <select class="select-coluna-tipo">
+                        <option value="VARCHAR">Texto</option>
+                        <option value="INT">Número</option>
+                    </select>
+                </div>
+            `;
+
+            colunasContainer.appendChild(colunaTemplate);
+        } else {
+            alert(`Você só pode adicionar até ${maxColumns} colunas.`);
+        }
     });
 
     removeFieldBtn.addEventListener('click', function (e) {
@@ -126,6 +133,14 @@ function saveTemplate() {
         return;
     }
 
+    const maxColumns = parseInt(getFieldValue('quantidade_linhas'));
+    const currentColumns = document.querySelectorAll('.coluna-template').length;
+
+    if (currentColumns !== maxColumns) {
+        alert(`Por favor, adicione exatamente ${maxColumns} colunas.`);
+        return;
+    }
+
     const url = 'http://localhost:3000/templates';
 
     // Coletando os dados do formulário manualmente
@@ -166,7 +181,7 @@ function saveTemplate() {
             } else {
                 console.error('Erro ao salvar o template:', data.mensagem || 'Erro desconhecido');
             }
-        })        
+        })
         .catch(error => {
             console.error('Erro ao enviar a requisição:', error);
         });
@@ -177,25 +192,25 @@ function saveTemplate() {
 const searchButton = document.querySelector("#search-box button");
 const searchIdInput = document.getElementById("search-id-input");
 
-searchButton.addEventListener('click', function() {
+searchButton.addEventListener('click', function () {
     // Pega o ID inserido pelo usuário
     const templateId = searchIdInput.value;
 
     if (templateId) {
         // Se um ID foi inserido, busca o template com esse ID
         fetch(`http://localhost:3000/templates/${templateId}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.template) {
-                // Se um template for encontrado, exibe-o na tabela
-                displaySingleTemplate(data.template);
-            } else {
-                alert('Template não encontrado!');
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao buscar o template:', error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                if (data.template) {
+                    // Se um template for encontrado, exibe-o na tabela
+                    displaySingleTemplate(data.template);
+                } else {
+                    alert('Template não encontrado!');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar o template:', error);
+            });
     } else {
         // Se nenhum ID foi inserido, exibe a lista completa de templates
         fetchTemplates();

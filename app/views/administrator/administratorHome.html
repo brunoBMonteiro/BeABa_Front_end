@@ -41,16 +41,15 @@
                 <i class="bi bi-file-earmark-spreadsheet"></i>
                 <div class="menu-indicator"></div>
             </div>
-             <!-- Adicione mais ícones conforme necessário -->
-            <div class="menu-icon" onclick="showPage('dashboard')" data-page="dashboard">
-                <i class="bi bi-bar-chart"></i>
-                <div class="menu-indicator"></div>
-            </div>
+
             <div class="menu-icon" onclick="showPage('settings')" data-page="settings">
                 <i class="bi bi-gear"></i>
                 <div class="menu-indicator"></div>
             </div>
-            <!-- Adicione mais ícones conforme necessário -->
+            <div class="menu-icon" onclick="showPage('dashboard')" data-page="dashboard">
+                <i class="bi bi-bar-chart"></i>
+                <div class="menu-indicator"></div>
+            </div>
             <div class="menu-icon" onclick="showPage('nova-tela')" data-page="nova-tela">
                 <i class="bi bi-plus"></i>
                 <div class="menu-indicator"></div>
@@ -120,13 +119,12 @@
                     
                     <!-- Quantidade de linhas -->
                     <div>
-                        <label for="quantidade-linhas">Quantidade de Linhas:</label>
+                        <label for="quantidade-linhas">Quantidade de Colunas:</label>
                         <input type="number" id="quantidade-linhas" name="quantidade_linhas" required>
                     </div>
             
                     <!-- Contêiner para as colunas -->
                     <div class="colunas-container">
-                        <!-- Seção de colunas, que pode ser repetida dinamicamente -->
                         <div class="coluna-template">
                             <div>
                                 <label for="nome-coluna">Nome da Coluna:</label>
