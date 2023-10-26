@@ -169,7 +169,21 @@ function saveTemplate() {
         .then(data => {
             if (data.mensagem === "Template cadastrado com sucesso") {
                 alert('Template salvo com sucesso!'); // Adicionado um alerta para informar ao usuário
+
+                // Remover colunas adicionais
+                let colunas = document.querySelectorAll('.coluna-template');
+                while (colunas.length > 1) {
+                    colunas[colunas.length - 1].remove();
+                    colunas = document.querySelectorAll('.coluna-template'); // Atualizar a lista de colunas
+                }
+
                 templateForm.reset();
+
+                // Resetar a quantidade de colunas para 1
+                const quantidadeLinhasInput = document.getElementById('quantidade-linhas');
+                if (quantidadeLinhasInput) {
+                    quantidadeLinhasInput.value = 1;
+                }
 
                 // Fechar o modal de pré-visualização
                 const previewModal = document.getElementById('preview-modal');
