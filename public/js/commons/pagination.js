@@ -9,7 +9,6 @@ async function fetchTemplates() {
   try {
     const response = await axios.get('http://localhost:3000/templates'); // Ajuste a URL para a rota correta do seu backend
     const templates = response.data;
-    console.log('Dados recebidos do backend:', templates);
     initPagination(templates);
   } catch (error) {
     console.error('Erro ao buscar os modelos:', error);

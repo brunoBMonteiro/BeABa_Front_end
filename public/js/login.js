@@ -43,11 +43,10 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log("Resposta do servidor:", data);
-
             if (data.token) {
                 localStorage.setItem('jwtToken', data.token);
-                console.log("Token JWT armazenado:", data.token);
+                localStorage.setItem('userName', data.nome);
+                localStorage.setItem('userPermission', data.perfil);
 
                 if (data.perfil === 'Padrão') {
                     window.location.href = 'http://127.0.0.1:5500/app/views/user/userHome.html';
