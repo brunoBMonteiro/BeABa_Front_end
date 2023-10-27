@@ -1,12 +1,12 @@
 /* CSS BOX MAIN */
-#dashboard {
+#settings {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-#dashboard-content {
+#settings-content {
     background-color: #D9D9D9;
     position: fixed;
     top: 60%;
@@ -20,7 +20,7 @@
     z-index: 1000;
 }
 
-#dashboard-content h2 {
+#settings-content h2 {
     font-size: 24px;
     margin-bottom: 20px;
     position: absolute;
@@ -31,6 +31,6 @@
     font-weight: bold;
 }
 
-.dashboard-content.show {
+#settings-content.show {
     display: block;
 }

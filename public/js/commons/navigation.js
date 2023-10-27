@@ -1,20 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const userName = localStorage.getItem('userName');
-    const userPermission = localStorage.getItem('userPermission');
-    
-    if (userName) {
-        document.getElementById('userName').textContent = userName;
-    }
-    if (userPermission) {
-        document.getElementById('userPermission').textContent = userPermission;
-    }
+    updateUserSidebarDetails();
 });
 
-// Função para atualizar o nome e perfil do usuário na barra lateral sempre que a página for alterada
 function updateUserSidebarDetails() {
     const userName = localStorage.getItem('userName');
     const userPermission = localStorage.getItem('userPermission');
-    
+
     if (userName) {
         document.getElementById('userName').textContent = userName;
     }
@@ -27,7 +18,9 @@ function showPage(pageId) {
     const welcomeContainer = document.querySelector('.welcome-container');
     const pages = document.querySelectorAll('.page');
     const dashboardContent = document.getElementById('dashboard-content');
-
+    const planilhaContent = document.querySelector('.planilha-content');
+    const settingsContent = document.querySelector('#settings-content');
+    const userSettingsContent = document.querySelector('#user-settings .user-settings-content');
     // Itera sobre todas as páginas e as oculta
     pages.forEach((page) => {
         page.style.display = 'none';
@@ -51,15 +44,11 @@ function showPage(pageId) {
         clickedIcon.classList.add('active');
     }
 
-    // Verifica se a página atual é a página inicial e exibe ou oculta o contêiner da mensagem de boas-vindas
     if (pageId === 'home') {
         welcomeContainer.style.display = 'block';
     } else {
         welcomeContainer.style.display = 'none';
     }
-
-    // Dentro da função showPage()
-    const planilhaContent = document.querySelector('.planilha-content');
 
     if (pageId === 'planilha') {
         planilhaContent.classList.add('show');
@@ -71,6 +60,18 @@ function showPage(pageId) {
         dashboardContent.style.display = 'block';
     } else {
         dashboardContent.style.display = 'none';
+    }
+
+    if (pageId === 'settings') {
+        settingsContent.classList.add('show');
+    } else {
+        settingsContent.classList.remove('show');
+    }
+
+    if (pageId === 'user-settings') {
+        userSettingsContent.classList.add('show');
+    } else {
+        userSettingsContent.classList.remove('show');
     }
 
     updateUserSidebarDetails();
