@@ -213,7 +213,32 @@
         <div class="settings-content">
             <div class="content active-content" id="settings-content">
                 <h2>Configurações de templates</h2>
-                <!-- Deixe esta div em branco -->
+
+                <div class="template-status-update">
+                    <label for="templateId">ID do Template:</label>
+                    <input type="number" id="templateId" placeholder="Insira o ID do Template">
+                    <button id="searchButton">Pesquisar</button>
+
+                    <div id="templateDetails">
+                        <div class="row">
+                            <p class="label"><strong>ID do Template:</strong></p>
+                            <p class="label"><strong>Status Atual:</strong></p>
+                        </div>
+                        <div class="row">
+                            <p class="data"><span id="templateIdDisplay"></span></p>
+                            <p class="data"><span id="templateStatusDisplay"></span></p>
+                        </div>
+                    </div>
+
+                    <label for="templateStatus">Atualizar status:</label>
+                    <select id="templateStatus">
+                        <option value="ativo">Ativo</option>
+                        <option value="inativo">Inativo</option>
+                    </select>
+                    <button id="updateButton">Salvar</button>
+
+                    <p id="statusMessage"></p>
+                </div>
             </div>
         </div>
     </div>

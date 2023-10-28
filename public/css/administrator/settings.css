@@ -18,19 +18,116 @@
     text-align: center;
     display: none;
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #settings-content h2 {
     font-size: 24px;
     margin-bottom: 20px;
-    position: absolute;
-    top: 5px;
+    position: absolute; 
+    top: 20px; 
     left: 50%;
     transform: translateX(-50%);
     color: #29B3A8;
     font-weight: bold;
+    text-align: center;
 }
 
 #settings-content.show {
-    display: block;
+    display: flex;
+}
+
+.template-status-update {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    background-color: #D9D9D9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    width: 50%;
+}
+
+.template-status-update label {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    width: 80%;
+    color: #29B3A8;
+}
+
+.template-status-update input[type="text"], 
+.template-status-update input[type="number"], 
+.template-status-update select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+    font-size: 16px;
+    text-align: center;
+}
+
+.template-status-update input[type="number"] {
+    width: 50%;
+}
+
+.template-status-update button {
+    padding: 10px 20px;
+    background-color: #29B3A8;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.template-status-update button:hover {
+    background-color: #757575;
+}
+
+#statusMessage {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+}
+
+#templateDetails {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    background-color: #F5F5F5;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+#templateDetails .row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+#templateDetails .row .label,
+#templateDetails .row .data {
+    width: 49%;
+    text-align: center;
+}
+
+#templateDetails .row .data {
+    border-bottom: 1px solid #ccc;
+}
+
+#templateDetails p {
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+    color: #29B3A8;
 }
