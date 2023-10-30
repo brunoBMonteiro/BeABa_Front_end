@@ -270,6 +270,7 @@ statusSearchButton.addEventListener('click', function() {
                 templateStatusDisplay.textContent = '';  
                 statusMessage.textContent = ''; 
             }
+            templateIdInput.value = '';
         })
         .catch(error => {
             console.error('Erro ao buscar o template:', error);
