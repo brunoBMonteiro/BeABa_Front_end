@@ -3,7 +3,7 @@ const paginationList = document.getElementById('pagination-list');
 
 let currentPage = 0;
 const recordsPerPage = 8;
-const maxButtonsToShow = 5; // Número máximo de botões de página a serem exibidos de uma vez
+const maxButtonsToShow = 5; 
 
 // Função para buscar os modelos no back-end usando o Axios
 async function fetchTemplates() {
