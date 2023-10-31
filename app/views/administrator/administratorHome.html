@@ -247,7 +247,73 @@
         <div class="user-settings-content">
             <div class="content active-content" id="user-settings-content">
                 <h2>Configurações de usuários</h2>
-                <!-- Deixe esta div em branco -->
+
+                <!-- Seção de Cadastro de Usuário -->
+                <div class="section" id="section-register-user">
+                    <h3>Cadastro de Usuário</h3>
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="matricula">Matrícula:</label>
+                            <input type="number" id="matricula" name="matricula" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-mail:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="senha">Senha:</label>
+                            <input type="password" id="senha" name="senha" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nome_usuario">Nome do Usuário:</label>
+                            <input type="text" id="nome_usuario" name="nome_usuario" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="foto_url">URL da Foto:</label>
+                            <input type="url" id="foto_url" name="foto_url">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="perfil_acesso">Perfil de Acesso:</label>
+                            <input type="text" id="perfil_acesso" name="perfil_acesso" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="squad">Squad:</label>
+                            <input type="text" id="squad" name="squad">
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Seção de Atualizar Dados do Usuário -->
+                <div class="section" id="section-update-user">
+                    <h3>Atualizar Dados do Usuário</h3>
+                    <!-- Formulário de atualização aqui -->
+                </div>
+
+                <!-- Seção de Deletar Usuário -->
+                <div class="section" id="section-delete-user">
+                    <h3>Deletar Usuário</h3>
+                    <!-- Formulário de deleção aqui -->
+                </div>
+
+                <!-- Navegação Interna -->
+                <nav>
+                    <ul>
+                        <li><a href="#" data-section="section-register-user">Cadastro de Usuário</a></li>
+                        <li><a href="#" data-section="section-update-user">Atualizar Dados</a></li>
+                        <li><a href="#" data-section="section-delete-user">Deletar Usuário</a></li>
+                    </ul>
+                </nav>
+
             </div>
         </div>
     </div>
@@ -258,6 +324,7 @@
     <script src="../../../public/js/commons/logout.js"></script>
     <script src="../../../public/js/commons/navigation.js"></script>
     <script src="../../../public/js/commons/templateManagement.js"></script>
+    <script src="../../../public/js/userNavigation.js"></script>
 </body>
 
 </html>
