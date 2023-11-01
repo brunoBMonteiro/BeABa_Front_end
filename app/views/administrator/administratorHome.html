@@ -298,9 +298,39 @@
                 </div>
 
                 <!-- 2. Seção de Buscar Usuário por Matrícula -->
-                <div class="section" id="section-search-user-by-id">
-                    <h3>Buscar Usuário por Matrícula</h3>
-                    <!-- Formulário de busca por matrícula aqui -->
+                <div class="section" id="id-section-search-user">
+                    <h3 id="id-search-title">Buscar Usuário por Matrícula</h3>
+
+                    <!-- Formulário de busca por matrícula -->
+                    <form id="id-search-form">
+                        <label for="id-matricula-input">Matrícula:</label>
+                        <input type="number" id="id-matricula-input" required>
+                        <button type="submit" id="id-search-button">Buscar</button>
+                    </form>
+
+                    <!-- Seção de Resultados -->
+                    <div id="id-search-result">
+                        <div class="form-group">
+                            <label for="id-display-matricula">Matrícula</label>
+                            <input type="text" id="id-display-matricula" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="id-display-email">E-mail</label>
+                            <input type="text" id="id-display-email" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="id-display-nome">Nome</label>
+                            <input type="text" id="id-display-nome" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="id-display-foto">Foto URL</label>
+                            <input type="text" id="id-display-foto" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="id-display-perfil">Perfil de Acesso</label>
+                            <input type="text" id="id-display-perfil" readonly>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- 3. Seção de Buscar Todos os Usuários -->

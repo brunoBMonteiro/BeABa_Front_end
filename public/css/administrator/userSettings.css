@@ -82,7 +82,7 @@
 }
 
 .form-group input,
-.form-group select { /* Adicionado estilização para o select */
+.form-group select { 
     width: 60%;
     padding: 5px;
     border: 1px solid #ccc;
@@ -143,3 +143,88 @@
 .arrow-navigation button:focus {
     outline: none;
 }
+
+/* Estilos específicos para a seção de Buscar Usuário por Matrícula */
+#id-section-search-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#id-search-title {
+    color: #29B3A8;
+}
+
+#id-search-form {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+#id-search-form label {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #29B3A8;
+    font-weight: bold;
+}
+
+#id-search-form input,
+#id-search-form button {
+    width: 60%; /* Ajustado para o tamanho anterior */
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#id-search-button {
+    background-color: #29B3A8;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#id-search-button:hover {
+    background-color: #1F8A7E;
+}
+
+#id-search-result {
+    display: none;
+    width: 70%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#id-result-title {
+    color: #29B3A8;
+    margin-bottom: 10px;
+}
+
+#id-result-details-form .form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#id-result-details-form .form-group label {
+    width: 30%;
+    text-align: right;
+    margin-right: 10px;
+    color: #29B3A8;
+    font-weight: bold;
+}
+
+#id-result-details-form .form-group input {
+    width: 65%; /* Ajustado para reduzir o tamanho */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
