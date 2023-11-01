@@ -1,24 +1,22 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const form = document.querySelector("#section-register-user form");
+    // Cadastro de novo usuário
+    const formRegister = document.querySelector("#section-register-user form");
+    formRegister.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-    form.addEventListener("submit", function(event) {
-        event.preventDefault(); // Impede o envio padrão do formulário
-
-        const senha = form.querySelector("#senha").value;
-        const confirmarSenha = form.querySelector("#confirmar_senha").value;
+        const senha = formRegister.querySelector("#senha").value;
+        const confirmarSenha = formRegister.querySelector("#confirmar_senha").value;
 
         if (senha !== confirmarSenha) {
             alert("As senhas não coincidem. Por favor, verifique e tente novamente.");
-            return; // Sai da função, impedindo o envio do formulário
+            return;
         }
 
-        // Coleta os dados do formulário em formato JSON
         const formData = {};
-        new FormData(form).forEach((value, key) => {
+        new FormData(formRegister).forEach((value, key) => {
             formData[key] = value;
         });
 
-        // Envia os dados para o back-end
         fetch("http://localhost:3000/usuario/cadastrar", {
             method: "POST",
             body: JSON.stringify(formData),
@@ -36,33 +34,29 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .then(data => {
             alert("Usuário cadastrado com sucesso!");
-            form.reset(); // Limpa os campos do formulário
+            formRegister.reset();
+            fetchUsers(); // Atualiza a lista de usuários após o cadastro bem-sucedido
         })
         .catch(error => {
             console.error("Erro ao enviar os dados: ", error);
             alert("Erro ao enviar os dados. Por favor, tente novamente mais tarde.");
         });
     });
-});
 
-// Busca de usuário por matricula
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.querySelector("#id-search-form");
+    // Busca de usuário por matricula
+    const formSearch = document.querySelector("#id-search-form");
     const resultDiv = document.querySelector("#id-search-result");
-    const matriculaInput = form.querySelector("#id-matricula-input");
+    const matriculaInput = formSearch.querySelector("#id-matricula-input");
 
-    form.addEventListener("submit", function(event) {
-        event.preventDefault(); // Impede o envio padrão do formulário
+    formSearch.addEventListener("submit", function(event) {
+        event.preventDefault();
 
         const matricula = matriculaInput.value;
-
-        // Se a matrícula estiver vazia, esconde os resultados e retorna
         if (!matricula) {
             resultDiv.style.display = "none";
             return;
         }
 
-        // Buscar detalhes do usuário pela matrícula
         fetch(`http://localhost:3000/usuario/${matricula}`)
         .then(response => {
             if (!response.ok) {
@@ -77,20 +71,50 @@ document.addEventListener("DOMContentLoaded", function() {
                 return;
             }
 
-            // Exibir os detalhes do usuário nos campos de formulário
             document.querySelector("#id-display-matricula").value = data.matricula;
             document.querySelector("#id-display-email").value = data.email;
             document.querySelector("#id-display-nome").value = data.nome_usuario;
             document.querySelector("#id-display-foto").value = data.foto_url;
             document.querySelector("#id-display-perfil").value = data.perfil_acesso;
 
-            resultDiv.style.display = "flex"; // Mostra o resultado da busca
+            resultDiv.style.display = "flex";
         })
         .catch(error => {
             alert("Erro ao buscar usuário. Por favor, tente novamente.");
         })
         .finally(() => {
-            matriculaInput.value = ''; // Limpa o campo de matrícula após a pesquisa
+            matriculaInput.value = ''; 
         });
     });
+
+    // Busca de todos usuários
+    const tbody = document.querySelector("#users-tbody");
+
+    function fetchUsers() {
+        fetch("http://localhost:3000/usuario/listarTodos")
+        .then(response => response.json())
+        .then(data => {
+            displayUsers(data);
+        })
+        .catch(error => {
+            alert("Erro ao buscar todos os usuários. Por favor, tente novamente.");
+        });
+    }
+
+    function displayUsers(users) {
+        tbody.innerHTML = '';
+        users.forEach(user => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${user.matricula}</td>
+                <td>${user.email}</td>
+                <td>${user.nome_usuario}</td>
+                <td>${user.foto_url}</td>
+                <td>${user.perfil_acesso}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    fetchUsers(); 
 });

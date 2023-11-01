@@ -212,7 +212,7 @@
     <div id="settings" class="page">
         <div class="settings-content">
             <div class="content active-content" id="settings-content">
-                <h2>Configurações de templates</h2>
+                <h2>Configurações de status dos templates</h2>
 
                 <div class="template-status-update">
                     <label for="templateId">ID do Template:</label>
@@ -336,7 +336,22 @@
                 <!-- 3. Seção de Buscar Todos os Usuários -->
                 <div class="section" id="section-search-all-users">
                     <h3>Buscar Todos os Usuários</h3>
-                    <!-- Formulário ou lista de todos os usuários aqui -->
+                    <div class="users-table-container">
+                        <table class="users-table">
+                            <thead>
+                                <tr>
+                                    <th>Matrícula</th>
+                                    <th>Email</th>
+                                    <th>Nome</th>
+                                    <th>Foto</th>
+                                    <th>Perfil</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-tbody">
+                                <!-- As linhas com os dados dos usuários serão inseridas aqui pelo JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <!-- 4. Seção de Deletar Usuário por Matrícula -->
@@ -351,8 +366,6 @@
                     <!-- Formulário de atualização de acesso aqui -->
                 </div>
 
-                <!-- Navegação Interna -->
-                <!-- Navegação com Setas -->
                 <nav class="arrow-navigation">
                     <button id="prev-section" onclick="changeSection('prev')">&#8592; Voltar</button>
                     <button id="next-section" onclick="changeSection('next')">&#8594; Avançar</button>

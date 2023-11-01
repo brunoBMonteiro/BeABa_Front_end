@@ -175,7 +175,7 @@
 
 #id-search-form input,
 #id-search-form button {
-    width: 60%; /* Ajustado para o tamanho anterior */
+    width: 60%; 
     padding: 5px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -228,3 +228,44 @@
     margin-bottom: 10px;
 }
 
+
+/* Buscar Todos os Usuários */
+.users-table-container {
+    max-height: 400px; 
+    overflow-y: auto; 
+    border-radius: 10px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    margin-top: 20px; 
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f9f9f9; 
+}
+
+.users-table th {
+    background-color: #29B3A8; 
+    color: #ffffff; 
+    font-weight: 500; 
+    letter-spacing: 0.5px;
+}
+
+.users-table th, .users-table td {
+    border: 1px solid #e0e0e0; 
+    padding: 12px 8px; 
+    text-align: left;
+}
+
+.users-table tr:hover {
+    background-color: #e6f2f5; 
+}
+
+.users-table td {
+    font-size: 14px; 
+}
+
+.users-table td.action-cell {
+    text-align: right; 
+    font-weight: 500; 
+}
