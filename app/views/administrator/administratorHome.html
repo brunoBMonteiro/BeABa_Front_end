@@ -367,9 +367,27 @@
                 </div>
 
                 <!-- 5. Seção de Atualizar Dados do Usuário (Alterar Acesso) -->
-                <div class="section" id="section-update-user">
+                <div class="section" id="section-update-access">
                     <h3>Alterar Acesso do Usuário</h3>
-                    <!-- Formulário de atualização de acesso aqui -->
+                    <!-- Formulário de atualização de acesso -->
+                    <form id="form-update-access">
+                        <div class="form-group">
+                            <label for="input-update-matricula">Matrícula:</label>
+                            <input type="text" id="input-update-matricula" name="inputUpdateMatricula"
+                                placeholder="Digite a matrícula" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="select-update-tipoacesso">Novo Tipo de Acesso:</label>
+                            <select id="select-update-tipoacesso" name="selectUpdateTipoAcesso" required>
+                                <option value="">Selecione o novo tipo de acesso</option>
+                                <option value="Administrador">Administrador</option>
+                                <option value="Gestor">Gestor</option>
+                                <option value="Padrão">Padrão</option>
+                                <!-- Adicione outras opções de acesso conforme necessário -->
+                            </select>
+                        </div>
+                        <button type="submit" id="btn-update-access">Atualizar Acesso</button>
+                    </form>
                 </div>
 
                 <nav class="arrow-navigation">

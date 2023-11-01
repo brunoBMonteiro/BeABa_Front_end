@@ -1,5 +1,47 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    // Seleciona o formulário de atualização de acesso
+    const formUpdateAccess = document.getElementById('form-update-access');
+
+    // Função para lidar com o envio do formulário
+    formUpdateAccess.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Pega os valores do formulário
+        const matricula = document.getElementById('input-update-matricula').value;
+        const tipoAcesso = document.getElementById('select-update-tipoacesso').value;
+
+        // Prepara os dados para enviar
+        const data = {
+            novoTipoAcesso: tipoAcesso 
+        };
+
+        fetch(`http://localhost:3000/usuario/${matricula}/tipoacesso`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Algo deu errado na atualização!');
+                }
+            })
+            .then(data => {
+                alert(data.mensagem); 
+                fetchUsers();
+                document.getElementById('input-update-matricula').value = '';
+                
+            })
+            .catch((error) => {
+                console.error('Erro:', error);
+                alert('Erro ao atualizar acesso.');
+            });
+    });
+
     // Deletar usuário por matrícula
     const formDelete = document.querySelector("#deleteUserForm");
     const inputMatricula = formDelete.querySelector("#matricula");

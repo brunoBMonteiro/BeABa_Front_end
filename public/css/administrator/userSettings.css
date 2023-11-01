@@ -221,7 +221,7 @@
 }
 
 #id-result-details-form .form-group input {
-    width: 65%; /* Ajustado para reduzir o tamanho */
+    width: 65%; 
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 5px;
@@ -315,5 +315,66 @@
 }
 
 #section-delete-user button:hover {
+    background-color: #1F8A7E;
+}
+
+
+/* Estilos específicos para a seção de Alterar Acesso do Usuário */
+#section-update-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+}
+
+#section-update-user h3 {
+    color: #29B3A8;
+    margin-bottom: 20px;
+}
+
+#form-update-access {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0;
+}
+
+#form-update-access .form-group {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#form-update-access .form-group label {
+    display: block;
+    text-align: center;
+    color: #29B3A8;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#form-update-access .form-group input[type="text"],
+#form-update-access .form-group select {
+    width: 60%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#btn-update-access {
+    background-color: #29B3A8;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 60%;
+    transition: background-color 0.3s;
+    margin-top: 8px;
+}
+
+#btn-update-access:hover {
     background-color: #1F8A7E;
 }
