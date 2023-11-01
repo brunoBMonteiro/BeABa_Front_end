@@ -1,21 +1,18 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('.section');
-    const navLinks = document.querySelectorAll('nav ul li a');
+document.addEventListener("DOMContentLoaded", function() {
+    const sections = document.querySelectorAll(".section");
+    const navItems = document.querySelectorAll("nav ul li");
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            
-            // Esconde todas as seções
+    navItems.forEach(item => {
+        item.addEventListener("click", function() {
+            // Oculta todas as seções
             sections.forEach(section => {
-                section.style.display = 'none';
+                section.style.display = "none";
             });
 
-            // Mostra a seção correspondente ao link clicado
-            const targetSection = document.querySelector(`#${this.getAttribute('data-section')}`);
-            if (targetSection) {
-                targetSection.style.display = 'block';
-            }
+            // Exibe a seção correspondente ao item clicado
+            const targetSectionId = this.getAttribute("data-section");
+            const targetSection = document.getElementById(targetSectionId);
+            targetSection.style.display = "block";
         });
     });
 });

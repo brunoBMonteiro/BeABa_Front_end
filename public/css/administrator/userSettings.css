@@ -46,7 +46,6 @@
     left: 50%;
     transform: translateX(-50%);
     color: #29B3A8;
-    /* Cor ajustada para o título "Cadastro de usuário" */
     font-weight: bold;
 }
 
@@ -64,13 +63,11 @@
     flex-direction: column;
     align-items: center;
     padding: 10px 0;
-    /* Reduzir o padding para diminuir a altura total */
 }
 
 .form-group {
     width: 100%;
     margin-bottom: 10px;
-    /* Reduzir a margem para diminuir o espaço entre os campos */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,14 +78,12 @@
     text-align: center;
     margin-bottom: 5px;
     color: #29B3A8;
-    /* Cor ajustada para os rótulos dos inputs */
     font-weight: bold;
 }
 
 .form-group input {
     width: 60%;
     padding: 5px;
-    /* Reduzir o padding para diminuir a altura do campo de entrada */
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -96,7 +91,6 @@
 /* Especificidade aumentada para o botão */
 .form-group button[type="submit"] {
     background-color: #29B3A8;
-    /* Cor ajustada para o botão */
     color: #ffffff;
     padding: 10px 20px;
     border: none;
@@ -108,7 +102,6 @@
 
 .form-group button[type="submit"]:hover {
     background-color: #1F8A7E;
-    /* Uma tonalidade um pouco mais escura para o efeito hover */
 }
 
 #user-settings-content h3 {
@@ -117,3 +110,35 @@
 
 
 /*  NAVEGAÇÃO INTERNA    */
+.section {
+    display: none;
+}
+
+#section-register-user {
+    display: block;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+nav ul li[data-section="section-register-user"]::before {
+    content: '📝'; /* Ícone de cadastro */
+}
+
+nav ul li[data-section="section-update-user"]::before {
+    content: '🔄'; /* Ícone de atualização */
+}
+
+nav ul li[data-section="section-delete-user"]::before {
+    content: '🗑️'; /* Ícone de deleção */
+}
