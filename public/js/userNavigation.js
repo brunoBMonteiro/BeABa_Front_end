@@ -1,18 +1,20 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const sections = document.querySelectorAll(".section");
-    const navItems = document.querySelectorAll("nav ul li");
+let currentSectionIndex = 0;
+const sections = document.querySelectorAll("#user-settings-content .section");
 
-    navItems.forEach(item => {
-        item.addEventListener("click", function() {
-            // Oculta todas as seções
-            sections.forEach(section => {
-                section.style.display = "none";
-            });
+function changeSection(direction) {
+    sections[currentSectionIndex].style.display = "none"; // Esconde a seção atual
 
-            // Exibe a seção correspondente ao item clicado
-            const targetSectionId = this.getAttribute("data-section");
-            const targetSection = document.getElementById(targetSectionId);
-            targetSection.style.display = "block";
-        });
-    });
-});
+    if (direction === 'next') {
+        currentSectionIndex = (currentSectionIndex + 1) % sections.length; // Avança para a próxima seção
+    } else {
+        currentSectionIndex = (currentSectionIndex - 1 + sections.length) % sections.length; // Volta para a seção anterior
+    }
+
+    sections[currentSectionIndex].style.display = "flex"; // Mostra a nova seção
+}
+
+// Inicializa a primeira seção como visível
+sections[0].style.display = "flex";
+for (let i = 1; i < sections.length; i++) {
+    sections[i].style.display = "none";
+}

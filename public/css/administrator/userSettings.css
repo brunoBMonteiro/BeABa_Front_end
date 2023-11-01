@@ -109,36 +109,38 @@
 }
 
 
-/*  NAVEGAÇÃO INTERNA    */
-.section {
-    display: none;
-}
-
-#section-register-user {
-    display: block;
-}
-
-nav ul {
+/*  NAVEGAÇÃO INTERNA   */
+/* NAVEGAÇÃO INTERNA */
+.arrow-navigation {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    list-style-type: none;
-    padding: 0;
+    align-items: center;
+    position: absolute;   /* Mantendo o posicionamento absoluto */
+    width: 100%;          /* Mantendo a largura total do container */
+    bottom: 20px;         /* Ajustado para definir a distância do fundo da div */
 }
 
-nav ul li {
+.arrow-navigation button {
+    background-color: #29B3A8;
+    color: #ffffff;
+    padding: 8px 15px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-nav ul li[data-section="section-register-user"]::before {
-    content: '📝'; /* Ícone de cadastro */
+.arrow-navigation button:hover {
+    background-color: #1F8A7E;
+    transform: scale(1.05);
 }
 
-nav ul li[data-section="section-update-user"]::before {
-    content: '🔄'; /* Ícone de atualização */
+.arrow-navigation button:active {
+    transform: scale(0.95);
 }
 
-nav ul li[data-section="section-delete-user"]::before {
-    content: '🗑️'; /* Ícone de deleção */
+.arrow-navigation button:focus {
+    outline: none;
 }

@@ -246,10 +246,10 @@
     <div id="user-settings" class="page">
         <div class="user-settings-content">
             <div class="content active-content" id="user-settings-content">
-                <h2>Configurações de usuários</h2>
+                <h2>Configurações gerais de usuário</h2>
 
                 <!-- Seção de Cadastro de Usuário -->
-                <div class="section" id="section-register-user">
+                <div class="section" id="sec  tion-register-user">
                     <h3>Cadastro de Usuário</h3>
                     <form action="#" method="post">
                         <div class="form-group">
@@ -293,26 +293,36 @@
                     </form>
                 </div>
 
-                <!-- Seção de Atualizar Dados do Usuário -->
-                <div class="section" id="section-update-user">
-                    <h3>Atualizar Dados do Usuário</h3>
-                    <!-- Formulário de atualização aqui -->
+                <!-- 2. Seção de Buscar Usuário por Matrícula -->
+                <div class="section" id="section-search-user-by-id">
+                    <h3>Buscar Usuário por Matrícula</h3>
+                    <!-- Formulário de busca por matrícula aqui -->
                 </div>
 
-                <!-- Seção de Deletar Usuário -->
+                <!-- 3. Seção de Buscar Todos os Usuários -->
+                <div class="section" id="section-search-all-users">
+                    <h3>Buscar Todos os Usuários</h3>
+                    <!-- Formulário ou lista de todos os usuários aqui -->
+                </div>
+
+                <!-- 4. Seção de Deletar Usuário por Matrícula -->
                 <div class="section" id="section-delete-user">
-                    <h3>Deletar Usuário</h3>
-                    <!-- Formulário de deleção aqui -->
+                    <h3>Deletar Usuário por Matrícula</h3>
+                    <!-- Formulário de deleção por matrícula aqui -->
+                </div>
+
+                <!-- 5. Seção de Atualizar Dados do Usuário (Alterar Acesso) -->
+                <div class="section" id="section-update-user">
+                    <h3>Alterar Acesso do Usuário</h3>
+                    <!-- Formulário de atualização de acesso aqui -->
                 </div>
 
                 <!-- Navegação Interna -->
-                <nav>
-                    <ul>
-                        <li data-section="section-register-user">Cadastro de Usuário</li>
-                        <li data-section="section-update-user">Atualizar Dados</li>
-                        <li data-section="section-delete-user">Deletar Usuário</li>
-                    </ul>
-                </nav>                
+                <!-- Navegação com Setas -->
+                <nav class="arrow-navigation">
+                    <button id="prev-section" onclick="changeSection('prev')">&#8592; Voltar</button>
+                    <button id="next-section" onclick="changeSection('next')">&#8594; Avançar</button>
+                </nav>
 
             </div>
         </div>
