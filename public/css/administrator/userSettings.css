@@ -81,7 +81,8 @@
     font-weight: bold;
 }
 
-.form-group input {
+.form-group input,
+.form-group select { /* Adicionado estilização para o select */
     width: 60%;
     padding: 5px;
     border: 1px solid #ccc;
@@ -108,16 +109,14 @@
     color: #29B3A8;
 }
 
-
-/*  NAVEGAÇÃO INTERNA   */
 /* NAVEGAÇÃO INTERNA */
 .arrow-navigation {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;   /* Mantendo o posicionamento absoluto */
-    width: 100%;          /* Mantendo a largura total do container */
-    bottom: 20px;         /* Ajustado para definir a distância do fundo da div */
+    position: absolute;   
+    width: 100%;          
+    bottom: 20px;         
 }
 
 .arrow-navigation button {
