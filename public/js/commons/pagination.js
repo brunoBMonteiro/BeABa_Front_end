@@ -44,6 +44,24 @@ function displayTemplates(templates, page) {
     });
 }
 
+function downloadXlsx(jsonObject, fileName) {
+    // Cria uma nova workbook
+    var wb = XLSX.utils.book_new();
+    
+    // Convertendo o objeto JSON em um array que contém um objeto
+    // Onde cada chave-valor do objeto será uma coluna-linha na planilha
+    var sheetData = [jsonObject];
+    
+    // Converte o array para uma worksheet
+    var ws = XLSX.utils.json_to_sheet(sheetData);
+    
+    // Adiciona a worksheet para a workbook
+    XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
+    
+    // Escreve a workbook e inicia o download
+    XLSX.writeFile(wb, `${fileName}.xlsx`);
+}
+
 function convertJsonToXls(jsonObject) {
     // Iniciar um arquivo HTML que irá imitar um arquivo XLS
     let html = `
@@ -86,6 +104,13 @@ function convertJsonToXls(jsonObject) {
     return html;
 }
 
+// Função para converter JSON para CSV
+function convertJsonToCsv(jsonObject) {
+    const headers = Object.keys(jsonObject).join(',');
+    const values = Object.values(jsonObject).join(',');
+    return headers + '\n' + values;
+}
+
 function downloadTemplate(templateId) {
     const url = `http://localhost:3000/templates/${templateId}/download`;
 
@@ -95,27 +120,20 @@ function downloadTemplate(templateId) {
             const fileName = data.fileName;
             const fileExtension = data.fileExtension.toLowerCase();
 
-            let blob;
             if (fileExtension === 'csv') {
                 const csvString = convertJsonToCsv(data.data);
-                blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+                const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+                initiateDownload(blob, fileName, 'csv');
             } else if (fileExtension === 'xls') {
                 const xlsString = convertJsonToXls(data.data);
-                blob = new Blob([xlsString], { type: 'application/vnd.ms-excel;charset=utf-8;' });
+                const blob = new Blob([xlsString], { type: 'application/vnd.ms-excel;charset=utf-8;' });
+                initiateDownload(blob, fileName, 'xls');
+            } else if (fileExtension === 'xlsx') {
+                // Para XLSX, utiliza a função downloadXlsx diretamente com a SheetJS
+                downloadXlsx(data.data, fileName);
             } else {
                 console.error(`Erro no download: Tipo de arquivo '${fileExtension}' não é suportado.`);
-                return;
             }
-
-            // Iniciar o download do Blob como um arquivo
-            const blobUrl = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = blobUrl;
-            a.download = `${fileName}.${fileExtension}`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(blobUrl);
         })
         .catch(error => {
             console.error('Erro ao buscar o template:', error);
@@ -123,14 +141,19 @@ function downloadTemplate(templateId) {
         });
 }
 
-// Função para converter JSON para CSV
-function convertJsonToCsv(jsonObject) {
-    const headers = Object.keys(jsonObject).join(',');
-    const values = Object.values(jsonObject).join(',');
-    return headers + '\n' + values;
+// Função para iniciar o download do arquivo
+function initiateDownload(blob, fileName, fileExtension) {
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = blobUrl;
+    a.download = `${fileName}.${fileExtension}`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(blobUrl);
 }
 
-// Adicionar o evento de clique no documento como antes
+// Adicionar o evento de clique no documento
 document.addEventListener('click', function (e) {
     if (e.target.classList.contains('bi-download') && e.target.classList.contains('icon-active')) {
         const templateId = e.target.getAttribute('data-id');
