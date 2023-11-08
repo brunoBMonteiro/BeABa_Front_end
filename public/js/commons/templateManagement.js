@@ -247,88 +247,95 @@ const statusMessage = document.getElementById("statusMessage");
 // Armazenamento do ID do template atual
 let currentTemplateId = null;
 
-// Evento de clique para buscar o template pelo ID na seção de atualização de status
-statusSearchButton.addEventListener('click', function() {
-    const templateId = templateIdInput.value;
+// Verifica se o botão de pesquisa de status existe
+if (statusSearchButton) {
+    // Evento de clique para buscar o template pelo ID na seção de atualização de status
+    statusSearchButton.addEventListener('click', function() {
+        const templateId = templateIdInput && templateIdInput.value;
 
-    if (!templateId) {
-        templateIdDisplay.textContent = '';
-        templateStatusDisplay.textContent = '';
-        alert('Por favor, preencha o campo com o ID do template para a pesquisa.');
-        return;
-    }
+        if (!templateId) {
+            if (templateIdDisplay) templateIdDisplay.textContent = '';
+            if (templateStatusDisplay) templateStatusDisplay.textContent = '';
+            alert('Por favor, preencha o campo com o ID do template para a pesquisa.');
+            return;
+        }
 
-    fetch(`http://localhost:3000/templates/${templateId}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.template) {
-                currentTemplateId = data.template.id_template; // Armazene o ID do template aqui
-                templateIdDisplay.textContent = data.template.id_template;
-                templateStatusDisplay.textContent = data.template.status ? 'Ativo' : 'Inativo';
-                templateStatusDisplay.setAttribute('data-status', data.template.status ? 'ativo' : 'inativo');
-                statusMessage.textContent = '';  
+        fetch(`http://localhost:3000/templates/${templateId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.template) {
+                    currentTemplateId = data.template.id_template; 
+                    if (templateIdDisplay) templateIdDisplay.textContent = data.template.id_template;
+                    if (templateStatusDisplay) {
+                        templateStatusDisplay.textContent = data.template.status ? 'Ativo' : 'Inativo';
+                        templateStatusDisplay.setAttribute('data-status', data.template.status ? 'ativo' : 'inativo');
+                    }
+                    if (statusMessage) statusMessage.textContent = '';  
+                } else {
+                    alert('Template não encontrado!');
+                    if (templateIdDisplay) templateIdDisplay.textContent = '';
+                    if (templateStatusDisplay) templateStatusDisplay.textContent = '';  
+                    if (statusMessage) statusMessage.textContent = ''; 
+                }
+                if (templateIdInput) templateIdInput.value = '';
+            })
+            .catch(error => {
+                alert('Erro ao buscar o template. Por favor, verifique o console para mais detalhes.');
+                if (templateIdDisplay) templateIdDisplay.textContent = '';  
+                if (templateStatusDisplay) templateStatusDisplay.textContent = '';  
+                if (statusMessage) statusMessage.textContent = '';  
+            });
+    });
+}
+
+// Verifica se o botão de atualização existe
+if (updateButton) {
+    // Evento de clique para atualizar o status do template
+    updateButton.addEventListener('click', function() {
+        const token = getToken();
+        if (!token) return;
+
+        if (!currentTemplateId) {
+            alert('Por favor, busque um template antes de atualizar o status.');
+            return;
+        }
+
+        const newStatus = templateStatusSelect.value; // Correção: Deve ser templateStatusSelect em vez de templateStatus
+        const currentStatus = templateStatusDisplay.getAttribute('data-status');
+
+        if (newStatus === currentStatus) {
+            alert(`O template já está ${newStatus}.`);
+            return;
+        }
+
+        const url = `http://localhost:3000/templates/${currentTemplateId}/status`;
+
+        fetch(url, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ status: newStatus })  
+        })
+        .then(response => {
+            if (response.status === 200) { 
+                return response.json();
             } else {
-                alert('Template não encontrado!');
-                templateIdDisplay.textContent = ''; 
-                templateStatusDisplay.textContent = '';  
-                statusMessage.textContent = ''; 
+                throw new Error('Erro ao atualizar o status.');
             }
-            templateIdInput.value = '';
+        })
+        .then(data => {
+            alert('Status atualizado com sucesso!');
+            templateStatusDisplay.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+            templateStatusDisplay.setAttribute('data-status', newStatus);
+            // fetchTemplates(); // Certifique-se de que esta função é definida ou remova se não for usada
         })
         .catch(error => {
-            console.error('Erro ao buscar o template:', error);
-            templateIdDisplay.textContent = '';  
-            templateStatusDisplay.textContent = '';  
-            statusMessage.textContent = '';  
+            alert(error.message);
         });
-});
-
-// Evento de clique para atualizar o status do template
-updateButton.addEventListener('click', function() {
-    const token = getToken();
-    if (!token) return;
-
-    if (!currentTemplateId) {
-        alert('Por favor, busque um template antes de atualizar o status.');
-        return;
-    }
-
-    const newStatus = templateStatus.value;
-    const currentStatus = templateStatusDisplay.getAttribute('data-status');
-
-    if (newStatus === currentStatus) {
-        alert(`O template já está ${newStatus}.`);
-        return;
-    }
-
-    const url = `http://localhost:3000/templates/${currentTemplateId}/status`;
-
-    fetch(url, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ status: newStatus })  
-    })
-    .then(response => {
-        if (response.status === 200) { 
-            return response.json();
-        } else {
-            throw new Error('Erro ao atualizar o status.');
-        }
-    })
-    .then(data => {
-        alert('Status atualizado com sucesso!');
-        templateStatusDisplay.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
-        templateStatusDisplay.setAttribute('data-status', newStatus);
-        fetchTemplates();
-    })
-    .catch(error => {
-        alert(error.message);
-        console.error('Erro ao atualizar o status:', error);
     });
-});
+}
 
 function displaySingleTemplate(template) {
     const templateList = document.getElementById("template-list");

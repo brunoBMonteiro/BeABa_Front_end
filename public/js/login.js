@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const email = emailInput.value;
         const password = passwordInput.value;
-        console.log("Dados de login:", { email, password });
 
         if (!email || !password) {
             alert('Por favor, preencha ambos os campos, email e senha.');
@@ -48,8 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('userName', data.nome);
                 localStorage.setItem('userPermission', data.perfil);
                 localStorage.setItem('userPhoto', data.foto); 
-
-                console.log('URL da foto do usuário:', data.foto);
 
                 if (data.perfil === 'Padrão') {
                     window.location.href = 'http://127.0.0.1:5500/app/views/user/userHome.html';
