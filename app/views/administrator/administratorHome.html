@@ -26,8 +26,7 @@
     <div class="sidebar">
         <div class="user-photo">
             <div class="circle" id="userPhotoTrigger" onclick="openModal()">
-                <img id="userImage" src="" alt="Foto do Usuário" style="display:none;">
-                <i class="bi bi-plus" id="addPhotoIcon"></i>
+                <img id="userImage" src="" alt="Foto do Usuário">
             </div>
         </div>
         <div class="user-name" id="userName">Nome do Usuário</div>
@@ -388,6 +387,21 @@
                         </div>
                         <button type="submit" id="btn-update-access">Atualizar Acesso</button>
                     </form>
+                </div>
+
+                <!-- 6. Seção de Perfil de Usuário -->
+                <div class="section" id="section-user-profile">
+                    <h3>Perfil de Usuário</h3>
+                    <div class="form-group">
+                        <label for="profile-foto-url">URL da Foto:</label>
+                        <input type="url" id="profile-foto-url" name="profile_foto_url">
+                        <button type="button" onclick="updatePhotoPreview()">Atualizar Preview</button>
+                    </div>
+                    <div class="form-group">
+                        <img id="profile-foto-preview" src="" alt="Preview da Foto do Usuário"
+                            style="max-width: 200px; height: auto;">
+                    </div>
+                    <!-- Outros campos do perfil do usuário aqui -->
                 </div>
 
                 <nav class="arrow-navigation">

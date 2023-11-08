@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${user.matricula}</td>
                 <td>${user.email}</td>
                 <td>${user.nome_usuario}</td>
-                <td>${user.foto_url}</td>
+                <td class="photo-url">${user.foto_url}</td>
                 <td>${user.perfil_acesso}</td>
             `;
             tbody.appendChild(row);

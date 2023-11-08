@@ -5,12 +5,18 @@ document.addEventListener('DOMContentLoaded', function() {
 function updateUserSidebarDetails() {
     const userName = localStorage.getItem('userName');
     const userPermission = localStorage.getItem('userPermission');
+    const userPhotoUrl = localStorage.getItem('userPhoto'); 
+    const userPhotoElement = document.getElementById('userImage'); 
 
     if (userName) {
         document.getElementById('userName').textContent = userName;
     }
     if (userPermission) {
         document.getElementById('userPermission').textContent = userPermission;
+    }
+    if (userPhotoUrl) {
+        userPhotoElement.src = userPhotoUrl; 
+        userPhotoElement.style.display = 'block'; // Certifique-se de que a foto seja exibida
     }
 }
 

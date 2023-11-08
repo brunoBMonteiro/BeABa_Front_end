@@ -61,8 +61,8 @@ header img {
 }
 
 .circle {
-    width: 40px;
-    height: 40px;
+    width: 95px;
+    height: 95px;
     background-color: #29B3A8;
     border-radius: 50%;
     display: flex;
@@ -71,6 +71,13 @@ header img {
     color: white;
     font-size: 24px;
     cursor: pointer;
+}
+
+#userImage {
+    width: 100%; 
+    height: auto; 
+    border-radius: 50%; 
+    object-fit: cover; 
 }
 
 .user-name {
@@ -655,3 +662,4 @@ header img {
     color: rgb(194, 9, 9);
     cursor: not-allowed;
 }
+

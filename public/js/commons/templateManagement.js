@@ -331,24 +331,31 @@ updateButton.addEventListener('click', function() {
 });
 
 function displaySingleTemplate(template) {
-    // Limpa a tabela
     const templateList = document.getElementById("template-list");
     templateList.innerHTML = '';
 
-    const downloadIconClass = template.status ? 'icon-active download-upload-icon' : 'icon-inactive download-upload-icon';
-    const uploadIconClass = template.status ? 'icon-active download-upload-icon' : 'icon-inactive download-upload-icon';
+    const downloadIconClass = template.status ? 'bi-download icon-active download-upload-icon' : 'bi-download icon-inactive download-upload-icon';
+    const uploadIconClass = template.status ? 'bi-upload icon-active download-upload-icon' : 'bi-upload icon-inactive download-upload-icon';
 
-    // Cria uma nova linha para o template
     const templateRow = document.createElement('tr');
     templateRow.innerHTML = `
         <td>${template.nome_template}</td>
         <td>${template.extensao_template}</td>
-        <td>${template.usuario.matricula}</td>
+        <td>${template.usuario ? template.usuario.matricula : 'Não disponível'}</td>
         <td>${template.id_template}</td>
-        <td>${template.usuario.email}</td>
-        <td><i class="bi bi-download ${downloadIconClass}" title="Download"></i></td>
-        <td><i class="bi bi-upload ${uploadIconClass}" title="Upload"></i></td>
+        <td>${template.usuario ? template.usuario.email : 'Não disponível'}</td>
+        <td><i class="${downloadIconClass}" title="Download" data-id="${template.id_template}"></i></td>
+        <td><i class="${uploadIconClass}" title="Upload"></i></td>
         <td>${template.status ? 'Ativo' : 'Inativo'}</td>
     `;
+
     templateList.appendChild(templateRow);
+
+    // Adiciona o evento de clique para download
+    const downloadIcon = templateRow.querySelector(`.${downloadIconClass}`);
+    if (downloadIcon && template.status) {
+        downloadIcon.addEventListener('click', function () {
+            downloadTemplate(template.id_template);
+        });
+    }
 }
