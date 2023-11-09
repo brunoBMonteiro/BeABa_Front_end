@@ -74,10 +74,10 @@ header img {
 }
 
 #userImage {
-    width: 100%; 
-    height: auto; 
-    border-radius: 50%; 
-    object-fit: cover; 
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .user-name {
@@ -222,7 +222,8 @@ header img {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
-    padding: 40px 20px 20px 20px; /* Aumentar o padding-top */
+    padding: 40px 20px 20px 20px;
+    /* Aumentar o padding-top */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
@@ -230,7 +231,8 @@ header img {
     justify-content: center;
     height: 80%;
     width: 400px;
-    margin: 40px auto; /* Reduzir a margem superior para compensar o aumento do padding */
+    margin: 40px auto;
+    /* Reduzir a margem superior para compensar o aumento do padding */
     text-align: center;
     overflow-y: auto;
     max-height: 90vh;
@@ -239,7 +241,8 @@ header img {
 #cadastro-content h2 {
     font-size: 24px;
     margin-bottom: 20px;
-    margin-top: 0; /* Remover margem superior */
+    margin-top: 0;
+    /* Remover margem superior */
     color: #29B3A8;
     text-align: center;
 }
@@ -247,7 +250,8 @@ header img {
 #template-form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Alterado de 'flex-start' para 'center' */
+    align-items: center;
+    /* Alterado de 'flex-start' para 'center' */
     width: 100%;
 }
 
@@ -255,7 +259,8 @@ header img {
     margin-bottom: 10px;
     font-weight: bold;
     color: #29B3A8;
-    text-align: center; /* Alterado de 'left' para 'center' */
+    text-align: center;
+    /* Alterado de 'left' para 'center' */
 }
 
 #template-form select,
@@ -267,7 +272,8 @@ header img {
     border-radius: 5px;
     margin-bottom: 20px;
     margin-top: 10px;
-    text-align: center; /* Adicionado para centralizar o texto dentro dos campos */
+    text-align: center;
+    /* Adicionado para centralizar o texto dentro dos campos */
 }
 
 #template-form button[type="submit"] {
@@ -335,7 +341,7 @@ header img {
     right: 92px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
     color: #29B3A8;
     cursor: pointer;
 }
@@ -367,7 +373,7 @@ header img {
 
 .pagination {
     display: flex;
-    justify-content: flex-end; 
+    justify-content: flex-end;
     align-items: center;
     margin-top: 20px;
 }
@@ -398,7 +404,8 @@ header img {
     border-spacing: 0;
 }
 
-.template-table th, .template-table td {
+.template-table th,
+.template-table td {
     padding: 10px;
     text-align: center;
     color: #29B3A8;
@@ -408,14 +415,14 @@ header img {
     background-color: #f0f0f0;
     font-weight: bold;
     color: #757575;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.1); 
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
 }
 
 .template-table td {
     background-color: #fff;
     color: #757575;
     font-weight: bold;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .template-table td a {
@@ -458,13 +465,13 @@ header img {
 }
 
 .modal {
-    display: none; 
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 2000;
     overflow-y: auto;
 }
@@ -474,7 +481,7 @@ header img {
     margin: 15% auto;
     padding: 20px;
     border-radius: 5px;
-    width: 60%; 
+    width: 60%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     display: flex;
@@ -506,21 +513,23 @@ header img {
 
 .buttons-container {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     gap: 20px;
     max-width: 300px;
     margin: 0 auto;
 }
 
 .colunas-container {
-    height: 200px; /* Altura fixa */
-    overflow-y: scroll;  /* Sempre mostrar a barra de rolagem */
-    margin-bottom: 20px; 
-    border: 1px solid #ccc; 
+    height: 200px;
+    /* Altura fixa */
+    overflow-y: scroll;
+    /* Sempre mostrar a barra de rolagem */
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
     padding: 10px;
-    width: 80%; 
-    margin-left: auto; 
-    margin-right: auto; 
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #preview-modal {
@@ -536,8 +545,10 @@ header img {
     justify-content: center;
 }
 
-#preview-content, #preview-content * {
-    box-sizing: border-box;  /* Isso garante que o padding e a borda não adicionem ao tamanho total */
+#preview-content,
+#preview-content * {
+    box-sizing: border-box;
+    /* Isso garante que o padding e a borda não adicionem ao tamanho total */
 }
 
 #preview-content {
@@ -598,13 +609,13 @@ header img {
 }
 
 .preview-columns {
-    display: flex; 
-    justify-content: flex-start; 
+    display: flex;
+    justify-content: flex-start;
     width: 100%;
 }
 
 .preview-column {
-    margin: 0 5px; 
+    margin: 0 5px;
     padding: 10px;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -663,3 +674,136 @@ header img {
     cursor: not-allowed;
 }
 
+/* Estilos para o modal de upload */
+#upload-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    /* Acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#upload-modal .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    /* Ajuste a largura conforme necessário */
+    max-width: 500px;
+    /* Uma largura máxima para telas grandes */
+}
+
+#upload-modal .close-modal {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+#upload-modal .close-modal:hover,
+#upload-modal .close-modal:focus {
+    color: #29B3A8;
+}
+
+#upload-modal h2 {
+    color: #29B3A8;
+    margin-bottom: 20px;
+}
+
+#upload-modal .file-upload-container {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+#upload-modal .file-upload-container label {
+    display: block;
+    color: #29B3A8;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#upload-modal .file-upload-container input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#upload-modal .modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+#upload-modal .modal-buttons button {
+    background-color: #29B3A8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#upload-modal .modal-buttons button:hover {
+    background-color: #1e8c81;
+}
+
+#upload-modal .modal-buttons button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#upload-status-message {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    /* Inicialmente escondido até que uma mensagem de status precise ser exibida */
+    display: none;
+}
+
+/* Estilos específicos para diferentes tipos de mensagens */
+.status-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.status-validating {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-approved {
+    background-color: #d4edda;
+    color: #155724;
+}

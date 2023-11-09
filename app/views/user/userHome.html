@@ -29,7 +29,7 @@
         <div class="user-name" id="userName">Nome do Usuário</div>
         <div class="user-permission" id="userPermission">Nível de Permissão</div>
         <div class="menu-title">Menu</div>
-    
+
         <div class="menu-icons">
             <div class="menu-icon" onclick="showPage('home')" data-page="home">
                 <i class="bi bi-house-door"></i>
@@ -41,7 +41,7 @@
             </div>
             <!-- Adicione mais ícones conforme necessário -->
         </div>
-    
+
         <div class="logout-button">
             <button type="button" id="btnLogout">
                 Logout
@@ -49,17 +49,6 @@
                     <i class="bi bi-box-arrow-left"></i>
                 </span>
             </button>
-        </div>
-    </div>
-    
-    <!-- Modal para adicionar foto -->
-    <div id="addPhotoModal" style="display:none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 999; justify-content: center; align-items: center;">
-        <div style="background-color: #fff; padding: 20px; border-radius: 8px;">
-            <label for="photoURL">Digite a URL da sua foto:</label>
-            <input type="text" id="photoURL">
-            <img id="previewImage" src="" alt="Pré-visualização" style="display:none; max-width: 200px;">
-            <button type="button" onclick="savePhoto()">Salvar</button>
-            <button type="button" onclick="closeModal()">Fechar</button>
         </div>
     </div>
 
@@ -179,8 +168,31 @@
                 </div>
 
             </div>
+
+            <!-- Modal de Upload -->
+            <div id="upload-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h2>Upload e Validação de Template</h2>
+                    <form id="upload-validation-form">
+                        <div>
+                            <label for="original-template">Template Original:</label>
+                            <input type="file" id="original-template" name="originalTemplate" required>
+                        </div>
+                        <div>
+                            <label for="filled-template">Template Preenchido:</label>
+                            <input type="file" id="filled-template" name="filledTemplate" required>
+                        </div>
+                        <div class="modal-buttons">
+                            <button type="button" id="validate-button">Validar Templates</button>
+                            <button type="button" id="save-button" disabled>Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>

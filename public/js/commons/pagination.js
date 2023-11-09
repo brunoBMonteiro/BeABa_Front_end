@@ -37,7 +37,7 @@ function displayTemplates(templates, page) {
             <td>${template.id_template}</td>
             <td>${email}</td>
             <td><i class="${downloadIconClass}" title="Download" data-id="${template.id_template}"></i></td>
-            <td><i class="${uploadIconClass}" title="Upload"></i></td>
+            <td><i class="${uploadIconClass}" title="Upload" data-id="${template.id_template}"></i></td>
             <td>${template.status ? 'Ativo' : 'Inativo'}</td>
         `;
         templateList.appendChild(templateRow);
@@ -153,15 +153,27 @@ function initiateDownload(blob, fileName, fileExtension) {
     URL.revokeObjectURL(blobUrl);
 }
 
-// Adicionar o evento de clique no documento
+/// Adicionar o evento de clique no documento para lidar com download e upload
 document.addEventListener('click', function (e) {
+    // Verifica se o clique foi em um ícone de download ativo
     if (e.target.classList.contains('bi-download') && e.target.classList.contains('icon-active')) {
         const templateId = e.target.getAttribute('data-id');
         if (templateId) {
             downloadTemplate(templateId);
         }
     }
+    // Verifica se o clique foi em um ícone de upload ativo
+    else if (e.target.classList.contains('bi-upload') && e.target.classList.contains('icon-active')) {
+        // Abre o modal de upload
+        document.getElementById('upload-modal').style.display = 'block';
+    }
 });
+
+// Event listener para o botão de fechar o modal de upload
+document.querySelector('#upload-modal .close-modal').addEventListener('click', function () {
+    document.getElementById('upload-modal').style.display = 'none';
+});
+
 
 function createPaginationButtons(templates) {
     const totalPages = Math.ceil(templates.length / recordsPerPage);

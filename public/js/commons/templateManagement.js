@@ -352,7 +352,7 @@ function displaySingleTemplate(template) {
         <td>${template.id_template}</td>
         <td>${template.usuario ? template.usuario.email : 'Não disponível'}</td>
         <td><i class="${downloadIconClass}" title="Download" data-id="${template.id_template}"></i></td>
-        <td><i class="${uploadIconClass}" title="Upload"></i></td>
+        <td><i class="${uploadIconClass}" title="Upload" data-id="${template.id_template}"></i></td>
         <td>${template.status ? 'Ativo' : 'Inativo'}</td>
     `;
 
@@ -365,4 +365,50 @@ function displaySingleTemplate(template) {
             downloadTemplate(template.id_template);
         });
     }
+}
+
+// FUNCIONALIDADE DE VALIDAR FICTICIA PARA TESTE
+document.getElementById('validate-button').addEventListener('click', function() {
+    // Exibe uma mensagem de validação em andamento
+    const statusMessage = document.getElementById('upload-status-message');
+    statusMessage.textContent = 'Validando...';
+    statusMessage.className = 'status-validating';
+    statusMessage.style.display = 'block';
+
+    // Simula uma chamada de API para validar o template
+    validateTemplate()
+        .then(result => {
+            if (result.isValid) {
+                // Se o template for validado com sucesso
+                statusMessage.textContent = 'Template aprovado!';
+                statusMessage.className = 'status-approved';
+
+                // Habilita o botão de salvar
+                document.getElementById('save-button').disabled = false;
+            } else {
+                // Se houver um erro de validação
+                statusMessage.textContent = 'Erro no template: ' + result.errorMessage;
+                statusMessage.className = 'status-error';
+            }
+        })
+        .catch(error => {
+            // Se houver um erro na chamada de API ou no processamento
+            statusMessage.textContent = 'Erro ao validar o template: ' + error.message;
+            statusMessage.className = 'status-error';
+        });
+});
+
+// Função fictícia para simular a validação do template
+function validateTemplate() {
+    return new Promise((resolve, reject) => {
+        // Substitua esta lógica pelo seu código de validação real
+        setTimeout(() => {
+            const isValid = true; // ou false se a validação falhar
+            if (isValid) {
+                resolve({ isValid: true });
+            } else {
+                resolve({ isValid: false, errorMessage: 'Número de colunas incorreto.' });
+            }
+        }, 2000); // Ajuste o tempo de espera conforme necessário
+    });
 }
