@@ -34,3 +34,61 @@
 .dashboard-content.show {
     display: block;
 }
+
+/* CSS ACIMA É A BASE E NÂO DEVE SER ALTERADO */
+
+/* CSS para os widgets do dashboard */
+.dashboard-widgets {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px; /* Espaço entre os widgets */
+    margin-top: 50px; /* Espaço abaixo do título */
+}
+
+.dashboard-widget {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 160px; /* Largura reduzida dos widgets */
+    height: 100px; /* Altura reduzida dos widgets */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-widget h3 {
+    color: #29B3A8;
+    margin-bottom: 5px; /* Espaçamento reduzido abaixo do título do widget */
+    font-size: 16px; /* Tamanho da fonte reduzido para o título do widget */
+}
+
+.dashboard-widget p {
+    font-size: 20px; /* Tamanho da fonte reduzido para o número */
+    color: #29B3A8;
+    font-weight: bold;
+}
+
+/* CSS para o container de detalhes dos templates */
+.dashboard-details {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 100%; /* Ajuste de acordo com o layout desejado */
+    margin-top: 20px; /* Espaço acima do container de detalhes */
+}
+
+.dashboard-details h3 {
+    color: #29B3A8;
+    margin-bottom: 10px;
+    font-size: 16px; /* Tamanho da fonte reduzido para o título do container de detalhes */
+}
+
+.template-detail {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}

@@ -367,48 +367,46 @@ function displaySingleTemplate(template) {
     }
 }
 
-// FUNCIONALIDADE DE VALIDAR FICTICIA PARA TESTE
-document.getElementById('validate-button').addEventListener('click', function() {
-    // Exibe uma mensagem de validação em andamento
-    const statusMessage = document.getElementById('upload-status-message');
-    statusMessage.textContent = 'Validando...';
-    statusMessage.className = 'status-validating';
-    statusMessage.style.display = 'block';
+function validateTemplate(originalFile, filledFile) {
+    document.getElementById('save-button').disabled = true;
 
-    // Simula uma chamada de API para validar o template
-    validateTemplate()
-        .then(result => {
-            if (result.isValid) {
-                // Se o template for validado com sucesso
-                statusMessage.textContent = 'Template aprovado!';
-                statusMessage.className = 'status-approved';
+    let formData = new FormData();
+    formData.append('originalTemplate', originalFile);
+    formData.append('filledTemplate', filledFile);
 
-                // Habilita o botão de salvar
-                document.getElementById('save-button').disabled = false;
-            } else {
-                // Se houver um erro de validação
-                statusMessage.textContent = 'Erro no template: ' + result.errorMessage;
-                statusMessage.className = 'status-error';
-            }
-        })
-        .catch(error => {
-            // Se houver um erro na chamada de API ou no processamento
-            statusMessage.textContent = 'Erro ao validar o template: ' + error.message;
-            statusMessage.className = 'status-error';
-        });
-});
-
-// Função fictícia para simular a validação do template
-function validateTemplate() {
-    return new Promise((resolve, reject) => {
-        // Substitua esta lógica pelo seu código de validação real
-        setTimeout(() => {
-            const isValid = true; // ou false se a validação falhar
-            if (isValid) {
-                resolve({ isValid: true });
-            } else {
-                resolve({ isValid: false, errorMessage: 'Número de colunas incorreto.' });
-            }
-        }, 2000); // Ajuste o tempo de espera conforme necessário
+    return fetch('http://localhost:5000/validate-template', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json(); // Se a resposta for OK, processa como JSON
+        } else {
+            // Se a resposta não for OK, tenta ler como JSON, mas prepara para erros
+            return response.text().then(text => {
+                try {
+                    // Tenta analisar o texto como JSON
+                    const data = JSON.parse(text);
+                    throw new Error(data.message || 'Ocorreu um erro na validação do template.');
+                } catch (e) {
+                    // Se não for JSON ou não tiver a mensagem esperada, lança um erro genérico
+                    throw new Error('Ocorreu um erro na validação do template. Tente novamente mais tarde.');
+                }
+            });
+        }
+    })
+    .then(data => {
+        if (data.status === 'approved') {
+            alert('Template validado com sucesso.');
+            document.getElementById('save-button').disabled = false; 
+        } else {
+            alert('Erro na validação: ' + data.message);
+            document.getElementById('save-button').disabled = true; 
+        }
+    })
+    .catch(error => {
+        // A mensagem de erro aqui já estará em português, conforme configurado acima
+        alert('Erro na validação: ' + error.message); 
+        document.getElementById('save-button').disabled = true; 
     });
 }

@@ -219,7 +219,33 @@
         <div class="dashboard-content">
             <div class="content active-content" id="dashboard-content">
                 <h2>Visão geral dos templates</h2>
-                <!-- Deixe esta div em branco -->
+                <div class="dashboard-widgets">
+                    <!-- Widget para o Total de Templates -->
+                    <div class="dashboard-widget">
+                        <h3>Total de Templates</h3>
+                        <p id="total-templates-count">Carregando...</p>
+                    </div>
+                    <!-- Widget para o Total de Usuários -->
+                    <div class="dashboard-widget">
+                        <h3>Total de Usuários</h3>
+                        <p id="total-users-count">Carregando...</p>
+                    </div>
+                    <!-- Widget para Templates Ativos -->
+                    <div class="dashboard-widget">
+                        <h3>Templates Ativos</h3>
+                        <p id="active-templates-count">Carregando...</p>
+                    </div>
+                    <!-- Widget para Templates Inativos -->
+                    <div class="dashboard-widget">
+                        <h3>Templates Inativos</h3>
+                        <p id="inactive-templates-count">Carregando...</p>
+                    </div>
+                    <!-- Espaço para exibir detalhes dos templates -->
+                    <div id="dashboard-details" class="dashboard-details">
+                        <h3>Detalhes dos Templates</h3>
+                        <!-- O conteúdo detalhado será inserido aqui pelo JavaScript -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -432,12 +458,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../../../public/js/commons/templateManagement.js"></script>
     <script src="../../../public/js/commons/pagination.js"></script>
     <script src="../../../public/js/commons/logout.js"></script>
     <script src="../../../public/js/commons/navigation.js"></script>
-    <script src="../../../public/js/commons/templateManagement.js"></script>
     <script src="../../../public/js/userNavigation.js"></script>
     <script src="../../../public/js/userFeatures.js"></script>
+    <script src="../../../public/js/dashboard.js"></script>
 </body>
 
 </html>

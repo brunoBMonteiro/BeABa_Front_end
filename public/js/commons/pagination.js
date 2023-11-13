@@ -174,6 +174,38 @@ document.querySelector('#upload-modal .close-modal').addEventListener('click', f
     document.getElementById('upload-modal').style.display = 'none';
 });
 
+document.getElementById('validate-button').addEventListener('click', function() {
+    const originalFileInput = document.getElementById('original-template');
+    const filledFileInput = document.getElementById('filled-template');
+    const statusMessageDiv = document.getElementById('upload-status-message');
+
+    if (originalFileInput.files.length > 0 && filledFileInput.files.length > 0) {
+        const originalFile = originalFileInput.files[0];
+        const filledFile = filledFileInput.files[0];
+
+        statusMessageDiv.textContent = 'Validando...';
+        statusMessageDiv.className = 'status-validating';
+
+        validateTemplate(originalFile, filledFile)
+            .then(data => { 
+                statusMessageDiv.textContent = data.message; 
+                if (data.status === 'approved') {
+                    statusMessageDiv.className = 'status-approved';
+                    document.getElementById('save-button').disabled = false;
+                } else {
+                    statusMessageDiv.className = 'status-error';
+                }
+            })
+            .catch(error => {
+                statusMessageDiv.textContent = 'Erro ao validar o template: ' + error.message;
+                statusMessageDiv.className = 'status-error';
+            });
+    } else {
+        statusMessageDiv.textContent = 'Por favor, selecione ambos os arquivos antes de validar.';
+        statusMessageDiv.className = 'status-error';
+    }
+});
+
 
 function createPaginationButtons(templates) {
     const totalPages = Math.ceil(templates.length / recordsPerPage);
