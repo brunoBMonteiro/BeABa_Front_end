@@ -243,7 +243,20 @@
                     <!-- Espaço para exibir detalhes dos templates -->
                     <div id="dashboard-details" class="dashboard-details">
                         <h3>Detalhes dos Templates</h3>
-                        <!-- O conteúdo detalhado será inserido aqui pelo JavaScript -->
+                        <div class="charts-container">
+                            <!-- Gráfico de barras para quantidade de linhas -->
+                            <div id="linesChartContainer" class="chart-container">
+                                <canvas id="linesChart"></canvas>
+                            </div>
+                            <!-- Gráfico de pizza para status dos templates -->
+                            <div id="statusChartContainer" class="chart-container">
+                                <canvas id="statusChart"></canvas>
+                            </div>
+                        </div>
+                        <!-- Tabela para listar os detalhes dos arquivos enviados -->
+                        <div id="templatesTable" class="templates-table">
+                            <!-- A tabela será gerada pelo JavaScript -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -458,6 +471,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../../../public/js/commons/templateManagement.js"></script>
     <script src="../../../public/js/commons/pagination.js"></script>
     <script src="../../../public/js/commons/logout.js"></script>

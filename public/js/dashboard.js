@@ -19,34 +19,84 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => document.getElementById('inactive-templates-count').textContent = data.total_inactive_templates)
         .catch(error => console.error('Erro ao carregar templates inativos:', error));
 
-    // Buscar e exibir os detalhes dos templates
     fetch('http://localhost:5000/dashboard-data')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok: ' + response.statusText);
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .then(data => {
-            const dashboardDetailsContainer = document.getElementById('dashboard-details');
-            dashboardDetailsContainer.innerHTML = ''; 
+            const names = data.map(template => template.nome_template);
+            // Calcula a quantidade de colunas para cada template
+            const columnCounts = data.map(template => Object.keys(template.campos_template).length);
+            const activeCounts = data.filter(template => template.status).length;
+            const inactiveCounts = data.filter(template => !template.status).length;
+            const linesCtx = document.getElementById('linesChart').getContext('2d');
+            const statusCtx = document.getElementById('statusChart').getContext('2d');
 
-            // Cria um elemento para cada template e adiciona ao container
-            data.forEach(template => {
-                const templateElement = document.createElement('div');
-                templateElement.className = 'template-detail';
-                templateElement.innerHTML = `
-                    <p><strong>Nome:</strong> ${template.nome_template}</p>
-                    <p><strong>Data:</strong> ${new Date(template.data_cadastrado).toLocaleDateString()}</p>
-                    <p><strong>Usuário:</strong> ${template.usuario.nome_usuario}</p>
-                    <p><strong>Email:</strong> ${template.usuario.email}</p>
-                `;
-                dashboardDetailsContainer.appendChild(templateElement);
+            new Chart(linesCtx, {
+                type: 'bar',
+                data: {
+                    labels: names,
+                    datasets: [{
+                        label: 'Quantidade de Colunas por Template',
+                        data: columnCounts,
+                        backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                        borderColor: 'rgba(0, 123, 255, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true
+                        }
+                    },
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                afterBody: function (context) {
+                                    const index = context[0].dataIndex;
+                                    const template = data[index];
+                                    if (template) {
+                                        return [
+                                            `Usuário: ${template.nome_usuario}`,
+                                            `Email: ${template.email}`,
+                                            `Data: ${new Date(template.data_cadastrado).toLocaleDateString()}`
+                                        ];
+                                    }
+                                    return ['Informação do usuário indisponível.'];
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            new Chart(statusCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Ativos', 'Inativos'],
+                    datasets: [{
+                        label: 'Status dos Templates',
+                        data: [activeCounts, inactiveCounts],
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.5)',
+                            'rgba(255, 99, 132, 0.5)'
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(255,99,132,1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
             });
         })
         .catch(error => {
             console.error('Erro ao carregar os detalhes dos templates:', error);
-            const dashboardDetailsContainer = document.getElementById('dashboard-details');
-            dashboardDetailsContainer.textContent = 'Erro ao carregar os detalhes dos templates';
         });
 });

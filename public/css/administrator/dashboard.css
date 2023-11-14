@@ -52,7 +52,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
     width: 160px; /* Largura reduzida dos widgets */
-    height: 100px; /* Altura reduzida dos widgets */
+    height: 70px; /* Altura reduzida dos widgets */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -77,8 +77,8 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    width: 100%; /* Ajuste de acordo com o layout desejado */
-    margin-top: 20px; /* Espaço acima do container de detalhes */
+    width: 98%; /* Ajuste de acordo com o layout desejado */
+    margin-top: 5px; /* Espaço acima do container de detalhes */
 }
 
 .dashboard-details h3 {
@@ -91,4 +91,29 @@
     border-bottom: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
+}
+
+/* CSS para os gráficos dentro do dashboard */
+.charts-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens se ajustem conforme o espaço disponível */
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px; /* Espaçamento entre os gráficos */
+}
+
+.chart-container {
+    flex: 1; /* Cada gráfico tentará ocupar espaço igual */
+    margin: 10px;
+    max-width: calc(50% - 20px); /* Garante que dois gráficos caibam na mesma linha */
+}
+
+/* Estilos para o canvas dos gráficos */
+canvas {
+    width: 100% !important; /* Ocupa toda a largura do contêiner */
+    height: 430px !important; /* Define a altura do gráfico */
+}
+
+#statusChartContainer {
+    max-width: 300px; /* Largura máxima para o gráfico de pizza */
 }
