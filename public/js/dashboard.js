@@ -1,4 +1,7 @@
-document.addEventListener('DOMContentLoaded', function () {
+let linesChart;
+let statusChart;
+
+function fetchDataAndUpdateUI() {
     Promise.all([
         fetch('http://localhost:5000/count-templates').then(response => response.json()),
         fetch('http://localhost:5000/count-users').then(response => response.json()),
@@ -19,9 +22,14 @@ document.addEventListener('DOMContentLoaded', function () {
         const names = dashboardData.map(template => template.nome_template);
         const columnCounts = dashboardData.map(template => Object.keys(template.campos_template).length);
 
+        // Destroi o gráfico de barras anterior se ele existir
+        if (linesChart) {
+            linesChart.destroy();
+        }
+
         // Configuração e criação do gráfico de barras
         const linesCtx = document.getElementById('linesChart').getContext('2d');
-        new Chart(linesCtx, {
+        linesChart = new Chart(linesCtx, {
             type: 'bar',
             data: {
                 labels: names,
@@ -63,9 +71,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
+        // Destroi o gráfico de pizza anterior se ele existir
+        if (statusChart) {
+            statusChart.destroy();
+        }
+
         // Configuração e criação do gráfico de pizza
         const statusCtx = document.getElementById('statusChart').getContext('2d');
-        new Chart(statusCtx, {
+        statusChart = new Chart(statusCtx, {
             type: 'pie',
             data: {
                 labels: ['Ativos', 'Inativos'],
@@ -92,4 +105,10 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch(error => {
         console.error('Erro ao carregar dados:', error);
     });
+}
+
+// Event listener para o carregamento do DOM
+document.addEventListener('DOMContentLoaded', function () {
+    fetchDataAndUpdateUI(); // Chama a função imediatamente para preencher os dados iniciais
+    setInterval(fetchDataAndUpdateUI, 60000); // Configura a atualização automática a cada 1 minuto
 });
