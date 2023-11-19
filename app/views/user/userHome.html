@@ -175,14 +175,19 @@
                     <span class="close-modal">&times;</span>
                     <h2>Upload e Validação de Template</h2>
                     <form id="upload-validation-form">
-                        <div>
+                        <div class="file-upload-container">
                             <label for="original-template">Template Original:</label>
                             <input type="file" id="original-template" name="originalTemplate" required>
                         </div>
-                        <div>
+                        <div class="file-upload-container">
                             <label for="filled-template">Template Preenchido:</label>
                             <input type="file" id="filled-template" name="filledTemplate" required>
                         </div>
+
+                        <!-- Elemento para exibir mensagens de status -->
+                        <div id="upload-status-message"></div>
+
+                        <!-- Botões de ação -->
                         <div class="modal-buttons">
                             <button type="button" id="validate-button">Validar Templates</button>
                             <button type="button" id="save-button" disabled>Salvar</button>
@@ -197,10 +202,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../../../public/js/commons/templateManagement.js"></script>
     <script src="../../../public/js/commons/pagination.js"></script>
     <script src="../../../public/js/commons/logout.js"></script>
     <script src="../../../public/js/commons/navigation.js"></script>
-    <script src="../../../public/js/commons/templateManagement.js"></script>
+    
 </body>
 
 </html>

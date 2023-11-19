@@ -27,14 +27,17 @@ function showPage(pageId) {
     const planilhaContent = document.querySelector('.planilha-content');
     const settingsContent = document.querySelector('#settings-content');
     const userSettingsContent = document.querySelector('#user-settings .user-settings-content');
+
     // Itera sobre todas as páginas e as oculta
     pages.forEach((page) => {
-        page.style.display = 'none';
+        if (page != null) { // Verificação adicionada aqui
+            page.style.display = 'none';
+        }
     });
 
     // Exibe a página correspondente ao ícone do menu clicado
     const pageToShow = document.getElementById(pageId);
-    if (pageToShow) {
+    if (pageToShow != null) { // Verificação adicionada aqui
         pageToShow.style.display = 'block';
     }
 
@@ -46,39 +49,31 @@ function showPage(pageId) {
 
     // Adiciona a classe 'active' ao ícone do menu clicado
     const clickedIcon = document.querySelector(`[data-page="${pageId}"]`);
-    if (clickedIcon) {
+    if (clickedIcon != null) { // Verificação adicionada aqui
         clickedIcon.classList.add('active');
     }
 
-    if (pageId === 'home') {
-        welcomeContainer.style.display = 'block';
-    } else {
-        welcomeContainer.style.display = 'none';
+    // Condições para mostrar ou esconder elementos específicos, com verificações de existência
+    if (welcomeContainer != null) { // Verificação adicionada aqui
+        welcomeContainer.style.display = (pageId === 'home') ? 'block' : 'none';
     }
 
-    if (pageId === 'planilha') {
-        planilhaContent.classList.add('show');
-    } else {
-        planilhaContent.classList.remove('show');
+    if (dashboardContent != null) { // Verificação adicionada aqui
+        dashboardContent.style.display = (pageId === 'dashboard') ? 'block' : 'none';
     }
 
-    if (pageId === 'dashboard') {
-        dashboardContent.style.display = 'block';
-    } else {
-        dashboardContent.style.display = 'none';
+    if (planilhaContent != null) { // Verificação adicionada aqui
+        planilhaContent.classList.toggle('show', pageId === 'planilha');
     }
 
-    if (pageId === 'settings') {
-        settingsContent.classList.add('show');
-    } else {
-        settingsContent.classList.remove('show');
+    if (settingsContent != null) { // Verificação adicionada aqui
+        settingsContent.classList.toggle('show', pageId === 'settings');
     }
 
-    if (pageId === 'user-settings') {
-        userSettingsContent.classList.add('show');
-    } else {
-        userSettingsContent.classList.remove('show');
+    if (userSettingsContent != null) { // Verificação adicionada aqui
+        userSettingsContent.classList.toggle('show', pageId === 'user-settings');
     }
 
+    // Atualiza os detalhes da barra lateral do usuário
     updateUserSidebarDetails();
 }
