@@ -138,6 +138,12 @@ function saveTemplate() {
     const token = getToken();
     if (!token) return;
 
+    const dataCadastrado = getFieldValue('data_cadastrado');
+    if (!dataCadastrado) {
+        alert('Por favor, preencha a data de cadastro.');
+        return;
+    }
+
     const maxColumns = parseInt(getFieldValue('quantidade_linhas'));
     const currentColumns = document.querySelectorAll('.coluna-template').length;
 
@@ -146,64 +152,67 @@ function saveTemplate() {
         return;
     }
 
+    // Verifica se todos os campos de nome da coluna estão preenchidos
+    const nomeColunas = document.querySelectorAll('.input-coluna-nome');
+    for (let i = 0; i < nomeColunas.length; i++) {
+        if (!nomeColunas[i].value.trim()) {
+            alert(`Por favor, preencha o nome da coluna ${i + 1}.`);
+            return;
+        }
+    }
+
     const url = 'http://localhost:3000/templates';
 
-    // Coletando os dados do formulário manualmente
     let templateData = {
         nome_template: getFieldValue('nome_template'),
         extensao_template: getFieldValue('extensao_template'),
-        data_cadastrado: getFieldValue('data_cadastrado'),
+        data_cadastrado: dataCadastrado,
         status: getFieldValue('status'),
-        quantidade_linhas: parseInt(getFieldValue('quantidade_linhas')),
+        quantidade_linhas: maxColumns,
         campos_template: getTemplateFields()
     };
 
-    // Adicionando o token JWT no cabeçalho da requisição
     fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}` // Usando o token diretamente
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(templateData)
     })
-        .then(response => {
-            console.log("Resposta do servidor:", response); // Log da resposta do servidor
-            return response.json();
-        })
-        .then(data => {
-            if (data.mensagem === "Template cadastrado com sucesso") {
-                alert('Template salvo com sucesso!'); // Adicionado um alerta para informar ao usuário
-
-                // Remover colunas adicionais
-                let colunas = document.querySelectorAll('.coluna-template');
-                while (colunas.length > 1) {
-                    colunas[colunas.length - 1].remove();
-                    colunas = document.querySelectorAll('.coluna-template'); // Atualizar a lista de colunas
-                }
-
-                templateForm.reset();
-
-                // Resetar a quantidade de colunas para 1
-                const quantidadeLinhasInput = document.getElementById('quantidade-linhas');
-                if (quantidadeLinhasInput) {
-                    quantidadeLinhasInput.value = 1;
-                }
-
-                // Fechar o modal de pré-visualização
-                const previewModal = document.getElementById('preview-modal');
-                if (previewModal) {
-                    previewModal.style.display = 'none';
-                }
-
-                fetchTemplates();
-            } else {
-                console.error('Erro ao salvar o template:', data.mensagem || 'Erro desconhecido');
+    .then(response => {
+        console.log("Resposta do servidor:", response);
+        if (!response.ok) {
+            throw new Error(`HTTP status ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.mensagem === "Template cadastrado com sucesso") {
+            alert('Template salvo com sucesso!');
+            let colunas = document.querySelectorAll('.coluna-template');
+            while (colunas.length > 1) {
+                colunas[colunas.length - 1].remove();
+                colunas = document.querySelectorAll('.coluna-template');
             }
-        })
-        .catch(error => {
-            console.error('Erro ao enviar a requisição:', error);
-        });
+            templateForm.reset();
+            const quantidadeLinhasInput = document.getElementById('quantidade-linhas');
+            if (quantidadeLinhasInput) {
+                quantidadeLinhasInput.value = 1;
+            }
+            const previewModal = document.getElementById('preview-modal');
+            if (previewModal) {
+                previewModal.style.display = 'none';
+            }
+            fetchTemplates();
+        } else {
+            console.error('Erro ao salvar o template:', data.mensagem || 'Erro desconhecido');
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao enviar a requisição ou processar a resposta:', error);
+        alert('Ocorreu um erro ao salvar o template. Por favor, verifique o console para mais detalhes.');
+    });
 }
 
 // Referência para o botão de pesquisa e o campo de input
