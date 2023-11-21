@@ -187,17 +187,9 @@ document.getElementById('validate-button').addEventListener('click', function() 
         statusMessageDiv.className = 'status-validating';
 
         validateTemplate(originalFile, filledFile)
-            .then(data => { 
-                statusMessageDiv.textContent = data.message; 
-                if (data.status === 'approved') {
-                    statusMessageDiv.className = 'status-approved';
-                    document.getElementById('save-button').disabled = false;
-                } else {
-                    statusMessageDiv.className = 'status-error';
-                }
-            })
             .catch(error => {
-                statusMessageDiv.textContent = 'Erro ao validar o template: ' + error.message;
+                // A mensagem de erro é definida no catch da função validateTemplate
+                statusMessageDiv.textContent = error;
                 statusMessageDiv.className = 'status-error';
             });
     } else {

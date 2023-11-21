@@ -376,6 +376,21 @@ function displaySingleTemplate(template) {
     }
 }
 
+function extractErrorMessage(htmlString) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, 'text/html');
+    const messageElement = doc.querySelector('p');
+    
+    if (messageElement) {
+        const match = messageElement.textContent.match(/:\s*(.+)/);
+        if (match && match[1]) {
+            return match[1].trim();
+        }
+    }
+    return 'Ocorreu um erro na validação do template. Por favor, tente novamente.';
+}
+
+
 function validateTemplate(originalFile, filledFile) {
     document.getElementById('save-button').disabled = true;
 
@@ -389,33 +404,24 @@ function validateTemplate(originalFile, filledFile) {
     })
     .then(response => {
         if (response.ok) {
-            return response.json(); // Se a resposta for OK, processa como JSON
+            return response.json();
         } else {
-            // Se a resposta não for OK, tenta ler como JSON, mas prepara para erros
-            return response.text().then(text => {
-                try {
-                    // Tenta analisar o texto como JSON
-                    const data = JSON.parse(text);
-                    throw new Error(data.message || 'Ocorreu um erro na validação do template.');
-                } catch (e) {
-                    // Se não for JSON ou não tiver a mensagem esperada, lança um erro genérico
-                    throw new Error('Ocorreu um erro na validação do template. Tente novamente mais tarde.');
-                }
-            });
+            return response.text().then(text => Promise.reject(text));
         }
     })
-    .then(data => {
-        if (data.status === 'approved') {
+    .then(result => {
+        if (result.status === 'approved') {
             alert('Template validado com sucesso.');
-            document.getElementById('save-button').disabled = false; 
+            document.getElementById('save-button').disabled = false;
         } else {
-            alert('Erro na validação: ' + data.message);
-            document.getElementById('save-button').disabled = true; 
+            alert('Erro na validação: ' + result.message);
+            document.getElementById('save-button').disabled = true;
         }
     })
     .catch(error => {
-        // A mensagem de erro aqui já estará em português, conforme configurado acima
-        alert('Erro na validação: ' + error.message); 
-        document.getElementById('save-button').disabled = true; 
+        // Extrai a mensagem de erro do HTML se necessário
+        const errorMessage = error.includes('<!doctype html>') ? extractErrorMessage(error) : error;
+        alert('Erro na validação: ' + errorMessage);
+        document.getElementById('save-button').disabled = true;
     });
 }
